@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="ui inverted link list">
             <a href="#" className="item">Sitemap</a>
             <a href="#" className="item">Contact Us</a>
-            <a href="#" className="item">Religious Ceremonies</a>
+            <a href="#" className="item">Religious Ceremoniess</a>
             <a href="#" className="item">Gazebo Plans</a>
           </div>
         </div>
