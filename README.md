@@ -8,4 +8,4 @@
  
  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623249344/welcome3_xcysef.png)
  
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623073504/hrmsProjectView3_lx289o.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623249724/newOverview_qeazh5.png)
