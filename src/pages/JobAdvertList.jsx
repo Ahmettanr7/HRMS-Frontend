@@ -13,11 +13,11 @@ export default function JobAdvertList() {
   }, []);
 
   return (
-    <div>
-      <CardGroup>
+    <div >
+      <CardGroup centered>
         {jobAdverts.map((jobAdvert) => (
           <Card
-            className="jobAdvertCard"
+            id='jobAdvertList'
             floated="right"
             link
             key={jobAdvert.jobAdvertId}>

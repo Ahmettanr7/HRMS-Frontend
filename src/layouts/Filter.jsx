@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Dropdown, Menu, Button } from 'semantic-ui-react'
+import { Dropdown, Menu, Button,Form, Input, FormGroup } from 'semantic-ui-react'
 import CityService from '../services/cityService';
 import EmployerService from "../services/employerService";
 import PositionService from "../services/positionService";
@@ -48,7 +48,7 @@ useEffect(() => {
 
     return (
         <div>
-            <Menu className="w100 p1em" vertical>
+      <Menu className="w100 p1em" vertical centered>
         <Menu.Item>
           <Menu.Header>Şehir</Menu.Header>
           
@@ -71,8 +71,10 @@ useEffect(() => {
           <Dropdown className="w100" placeholder='Şirket seç' search selection options={employersOption} />
           </Menu.Menu>
         </Menu.Item>
-        <Button className="w100" floated="right" >Filtrele <i aria-hidden="true" class="search icon"></i></Button>
-      </Menu>
+        <Menu.Item>
+           <Button basic>Filtrele <i aria-hidden="true" className="search icon"></i></Button>
+        </Menu.Item>
+    </Menu>
         </div>
     )
 }
