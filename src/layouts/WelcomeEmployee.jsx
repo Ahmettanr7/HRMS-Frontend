@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Grid, GridColumn, GridRow, Image, Button } from 'semantic-ui-react';
 
-export default function Deneme1() {
+export default function WelcomeEmployee() {
     return (
         <div>
             <Container>

@@ -2,9 +2,9 @@ import React from "react";
 import {  Grid, GridColumn, Image } from 'semantic-ui-react';
 import Navi from "./Navi";
 import Footer from "./Footer";
-import Deneme1 from "./Deneme1";
-import Deneme2 from "./Deneme2";
-import Deneme3 from "./Deneme3";
+import WelcomeEmployee from "./WelcomeEmployee";
+import WelcomeEmployer from "./WelcomeEmployer";
+import WelcomeLetsStart from "./WelcomeLetsStart";
 
 export default function Welcome() {
   return (
@@ -15,14 +15,14 @@ export default function Welcome() {
         <Grid>
           <Grid.Row>
             <Grid.Column width={8} floated="left">
-                <Deneme1></Deneme1>
+                <WelcomeEmployee></WelcomeEmployee>
             </Grid.Column>
             <GridColumn width={8} floated="right">
-                <Deneme2></Deneme2>
+                <WelcomeEmployer></WelcomeEmployer>
             </GridColumn>
           </Grid.Row>
         </Grid>
-        <Deneme3></Deneme3>
+        <WelcomeLetsStart></WelcomeLetsStart>
       <Footer></Footer>
     </div>
   );
