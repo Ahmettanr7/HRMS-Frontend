@@ -9,7 +9,6 @@ import WelcomeLetsStart from "./WelcomeLetsStart";
 export default function Welcome() {
   return (
     <div>
-      <Navi></Navi>
       <Image centered id='welcome-image' className='mt1bem' src='https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623244779/DENEME3_f0oxeu.png'>
       </Image>
         <Grid>
@@ -23,7 +22,6 @@ export default function Welcome() {
           </Grid.Row>
         </Grid>
         <WelcomeLetsStart></WelcomeLetsStart>
-      <Footer></Footer>
     </div>
   );
 }

@@ -17,12 +17,8 @@ export default function WelcomeEmployee() {
                         <Button className='button-size' primary inverted circular><i class="hand point down outline icon"></i><h3 class="ui header">İŞ FIRSATLARINI KOVALA</h3></Button>
                         </GridColumn>
                     </GridRow>
-                    
                 </Grid>
-                
-            </Container>
-            
-            
+            </Container>   
         </div>
     )
 }

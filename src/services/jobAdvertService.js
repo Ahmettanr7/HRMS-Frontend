@@ -24,5 +24,9 @@ export default class JobAdvertService{
     getActiveJobAdvertsDto(){
         return axios.get("http://localhost:8080/api/jobadverts/getJobAdvertDtoActiveAdvertsByDate")
     }
+
+    getByJobAdvertId(jobAdvertId){
+        return axios.get("http://localhost:8080/api/jobadverts/getbyjobadvertid?jobAdvertId="+ jobAdvertId)
+    }
     
 }
