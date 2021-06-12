@@ -31,8 +31,11 @@ export default function JobAdvertList() {
               <Card.Meta textAlign="right">{jobAdvert.city.cityName}</Card.Meta>
               <Card.Content textAlign="left">{jobAdvert.employer.companyName}</Card.Content>
               <Card.Meta textAlign="left">Minimum Alım : {jobAdvert.quantity}</Card.Meta>
-              <Card.Meta textAlign="right">Yayınlanma : {jobAdvert.advertDate}</Card.Meta>
-              <Card.Meta textAlign="right">Son başvuru : {jobAdvert.dueDate}</Card.Meta>
+              <Card.Meta textAlign="right"><i className='bell icon'></i> {jobAdvert.advertDate}</Card.Meta>
+              <Card.Meta textAlign="right">Son Başvuru Tarihi</Card.Meta>
+              <Card.Meta textAlign="right"><i className='bell slash icon'></i>  {jobAdvert.dueDate}</Card.Meta>
+              <Card.Meta textAlign="left"><i className='briefcase icon'></i> {jobAdvert.jobTypePlace.placeTypeName}</Card.Meta>
+              <Card.Meta textAlign="left"> <i className='time icon'></i> {jobAdvert.jobTypeTime.timeTypeName}</Card.Meta>
               </Link>
             </Card.Content>
             <Card.Content extra>

@@ -8,24 +8,25 @@ export default function Footer() {
         <div className="three wide column">
           <h4 className="ui inverted header">About</h4>
           <div className="ui inverted link list">
-            <a href="#" className="item">Sitemap</a>
-            <a href="#" className="item">Contact Us</a>
-            <a href="#" className="item">Religious Ceremoniess</a>
-            <a href="#" className="item">Gazebo Plans</a>
+            <a  className="item">Sitemap</a>
+            <a  className="item">Contact Us</a>
+            <a  className="item">Religious Ceremoniess</a>
+            <a  className="item">Gazebo Plans</a>
           </div>
         </div>
         <div className="three wide column">
           <h4 className="ui inverted header">Services</h4>
           <div className="ui inverted link list">
-            <a href="#" className="item">Banana Pre-Order</a>
-            <a href="#" className="item">DNA FAQ</a>
-            <a href="#" className="item">How To Access</a>
-            <a href="#" className="item">Favorite X-Men</a>
+            <a  className="item">Banana Pre-Order</a>
+            <a  className="item">DNA FAQ</a>
+            <a  className="item">How To Access</a>
+            <a  className="item">Favorite X-Men</a>
           </div>
         </div>
         <div className="seven wide column">
-          <h4 className="ui inverted header">Footer Header</h4>
-          <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+          <h4 className="ui inverted header">HRMS.job</h4>
+          <p>Copyright © 2021 HRMS.job | Tüm Hakları Saklıdır.</p>
+          <p>Engin Demiroğ CANDIR</p>
         </div>
       </div>
     </div>

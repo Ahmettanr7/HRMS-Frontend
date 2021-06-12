@@ -1,8 +1,8 @@
 import axios from "axios"
 
 export default class JobAdvertService{
-    add(){
-        return axios.create("http://localhost:8080/api/jobadverts/add")
+    add(jobAdvert){
+        return axios.post("http://localhost:8080/api/jobadverts/add",jobAdvert)
     }
     //Düzenlenecek
     closeAdvert(){

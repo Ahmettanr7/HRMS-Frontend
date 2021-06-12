@@ -1,7 +1,5 @@
 import React from "react";
 import {  Grid, GridColumn, Image } from 'semantic-ui-react';
-import Navi from "./Navi";
-import Footer from "./Footer";
 import WelcomeEmployee from "./WelcomeEmployee";
 import WelcomeEmployer from "./WelcomeEmployer";
 import WelcomeLetsStart from "./WelcomeLetsStart";

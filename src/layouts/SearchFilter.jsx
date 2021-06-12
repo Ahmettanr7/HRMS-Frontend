@@ -1,37 +1,25 @@
 import React from "react";
-import { Form, Input, Button, FormGroup, Menu } from "semantic-ui-react";
+import { Form,  Button, FormGroup, Search } from "semantic-ui-react";
 
 export default function SearchFilter() {
   return (
-    <div >
+    <div style={{backgroundColor:'white',borderRadius:'10px'}}>
       <Form id='searchFilter'>
         <h4>İsme Göre Ara</h4>
         <FormGroup inline>
-          <Form.Field
-            error
-            control={Input}
-            placeholder="İstanbul"
-          />
+          <Search category noResultsMessage='Şehir bulunamadı' noResultsDescription='Aradığınız kritere uygun şehir bulunamadı' minCharacters={3}  placeholder="İstanbul"/>
           <Button basic size='mini'>
             Ara
           </Button>
         </FormGroup>
         <FormGroup inline>
-          <Form.Field
-          error
-            control={Input}
-            placeholder="Yazılım Geliştirici"
-          />
+           <Search noResultsMessage='Pozisyon bulunamadı' noResultsDescription='Aradığınız kritere uygun pozisyon bulunamadı' minCharacters={3} placeholder="Yazılım Geliştirici"/>
           <Button basic size='mini'>
             Ara
           </Button>
         </FormGroup>
         <FormGroup inline>
-          <Form.Field
-          error
-            control={Input}
-            placeholder="Tannet "
-          />
+        <Search noResultsMessage='Şirket bulunamadı' noResultsDescription='Aradığınız kritere uygun şirket bulunamadı' minCharacters={3} placeholder="TANNET SOFT"/>
           <Button basic size='mini'>
             Ara
           </Button>

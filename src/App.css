@@ -7,7 +7,7 @@
   padding-bottom: 1em !important; 
 }
 .w100{
-  width: auto!important;
+  width: 100% !important;
 }
 .mt1em{
   margin-top: 1em !important;
@@ -90,5 +90,12 @@
     height: 100px;
     margin-left: -10px !important;
     overflow: hidden;
+  }
+  .filterBorder{
+    border:2px solid #f2f2f2;
+    border-radius: 10px;
+  }
+  .displayInlineBlock{
+    display: block !important; 
   }
 }
