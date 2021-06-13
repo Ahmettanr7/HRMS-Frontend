@@ -31,3 +31,11 @@
  
  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623535061/jobAdvertAdd2_gdm3cm.png)
  
+  # Job Advert Management For Employer Page
+ 
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623619298/employerJobAdList_ekbdea.png)
+ 
+  # Job Advert Management For Admin Page
+ 
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623619297/adminJobAdList_xb6oo5.png)
+ 
