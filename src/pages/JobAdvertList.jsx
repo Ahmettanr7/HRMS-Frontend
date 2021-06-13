@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Card, CardGroup, Image } from "semantic-ui-react";
 import JobAdvertService from "../services/jobAdvertService";
 

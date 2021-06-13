@@ -1,6 +1,5 @@
 import React from "react";
 import { Dropdown, Menu, Image, Button, Icon } from "semantic-ui-react";
-import JobAdvertAdd from "../pages/JobAdvertAdd";
 
 export default function Signedin({ signOut }) {
   return (
@@ -16,16 +15,6 @@ export default function Signedin({ signOut }) {
           <Dropdown.Menu>
             <Dropdown.Item text="Bilgilerim" icon="info" />
             <Dropdown.Item onClick={signOut} text="ÇIKIŞ YAP" icon="out" />
-            <Dropdown.Item>
-              <JobAdvertAdd
-                triggerButton={
-                  <Button primary icon labelPosition="left">
-                    <Icon name="add" />
-                    İş İlanı Ekle
-                  </Button>
-                }
-              />
-            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Menu.Item>

@@ -1,7 +1,6 @@
 import { Container, Grid, GridColumn } from 'semantic-ui-react';
 import Navi from './Navi';
 import Filter from './Filter';
-import JobAdvertList from '../pages/JobAdvertList';
 import JobAdvertDetail from '../pages/JobAdvertDetail';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
@@ -10,6 +9,9 @@ import Footer from './Footer';
 import { Route } from 'react-router';
 import Welcome from './Welcome';
 import SignUpEmployer from '../pages/SignUpEmployer';
+import JobAdvertList from '../pages/JobAdvertList';
+import JobAdvertListAdmin from '../pages/admin/JobAdvertListAdmin';
+import JobAdvertListEmployer from '../pages/employer/jobAdvertListEmployer';
 
 export default function Dashboard() {
     return (
@@ -19,6 +21,8 @@ export default function Dashboard() {
             <Route exact path='/login' component={SignIn}/>
             <Route exact path='/signup' component={SignUp}/>
             <Route exact path='/signupemployer' component={SignUpEmployer}/>
+            <Route exact path='/jobadvertlist' component={JobAdvertListAdmin}/>
+            <Route exact path='/37/jobadvertlist' component={JobAdvertListEmployer}/>
       <Container className="mt1em">
       <Grid>
                 <Grid.Row>

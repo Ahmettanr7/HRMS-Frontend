@@ -182,9 +182,9 @@ export default function Filter() {
             <Checkbox
               style={{marginLeft:'15px'}}
               name="checkboxRadioGroup"
-              label={jobTime.typeName}
-              key={jobTime.typeId}
-              value={jobTime.typeId}
+              label={jobTime.timeTypeName}
+              key={jobTime.timeTypeId}
+              value={jobTime.timeTypeId}
             />
           ))}
         </Form.Field>
@@ -209,9 +209,9 @@ export default function Filter() {
             <Checkbox
               style={{marginLeft:'15px'}}
               name="checkboxRadioGroup"
-              label={jobPlace.typeName}
-              key={jobPlace.typeId}
-              value={jobPlace.typeId}
+              label={jobPlace.placeTypeName}
+              key={jobPlace.placeTypeId}
+              value={jobPlace.placeTypeId}
             />
           ))}
         </Form.Field>

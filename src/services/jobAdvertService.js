@@ -4,9 +4,25 @@ export default class JobAdvertService{
     add(jobAdvert){
         return axios.post("http://localhost:8080/api/jobadverts/add",jobAdvert)
     }
-    //Düzenlenecek
-    closeAdvert(){
-        return axios.create("http://localhost:8080/api/jobadverts/closeAdvert")
+    
+    closeAdvertAdmin(jobAdvertId){
+        return axios.post("http://localhost:8080/api/jobadverts/closeAdvertAdmin?jobAdvertId="+jobAdvertId)
+    }
+
+    closeAdvert(jobAdvertId){
+        return axios.post("http://localhost:8080/api/jobadverts/closeAdvert?jobAdvertId="+jobAdvertId)
+    }
+
+    confirmAdvert(jobAdvertId){
+        return axios.post("http://localhost:8080/api/jobadverts/confirmAdvert?jobAdvertId="+jobAdvertId)
+    }
+
+    getAll(){
+        return axios.get("http://localhost:8080/api/jobadverts/getall")
+    }
+
+    getAllByUserId(userId){
+        return axios.get("http://localhost:8080/api/jobadverts/getByUserIdAndSortByAdvertDateDesc?userId="+userId)
     }
 
     getActiveJobAdverts(){
