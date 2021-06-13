@@ -15,12 +15,14 @@ export default function JobAdvertListAdmin() {
     jobAdvertService.confirmAdvert(jobAdvertId).then(result => {
       console.log(result.data);;
     })
+    window.location.reload()
   };
 
   let remove = (jobAdvertId) => {
     jobAdvertService.closeAdvertAdmin(jobAdvertId).then(result => {
       console.log(result.data);;
     })
+    window.location.reload()
   };
 
     return (

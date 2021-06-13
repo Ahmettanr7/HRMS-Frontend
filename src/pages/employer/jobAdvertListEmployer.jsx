@@ -16,6 +16,7 @@ export default function JobAdvertListEmployer() {
     jobAdvertService.closeAdvert(jobAdvertId).then(result => {
       console.log(result.data);;
     })
+    window.location.reload()
   };
 
     return (
