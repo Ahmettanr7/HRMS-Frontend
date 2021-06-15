@@ -1,25 +1,31 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Input, Form, GridColumn, Container, Header } from "semantic-ui-react";
+import {
+  Button,
+  Input,
+  Form,
+  GridColumn,
+  Container,
+  Header,
+} from "semantic-ui-react";
 import EmployerService from "../services/employerService";
+import { success, error, info } from "react-toast-notification";
 
 export default function SignUpEmployer() {
   const signUpEmployerSchema = Yup.object().shape({
     email: Yup.string()
       .email("Hatalı Email biçimi")
-      .required("Bu alanın doldurulması zorunlu"),
-    password: Yup.string()
+      .required("Email Adresinizi Giriniz"),
+    password: Yup.string().nullable().required("Parolanızı Oluşturunuz!"),
+    companyName: Yup.string()
       .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
-      companyName: Yup.string()
+      .required("Lütfen Firma İsminizi Bizimle Paylaşınız"),
+    webSite: Yup.string()
       .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
-      webSite: Yup.string()
-      .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
-      taxNumber: Yup.number().required("Bu alanın doldurulması zorunlu"),
-    phoneNumber: Yup.number().required("Bu alanın doldurulması zorunlu"),
+      .required("Lütfen Web Sitenizin Adresini Bizimle Paylaşınız!"),
+    taxNumber: Yup.number().required("Vergi Numaranızı Bizimle Paylaşınız!"),
+    phoneNumber: Yup.number().required("Telefon Numaranızı Bizimle Paylaşınız"),
   });
 
   let employerService = new EmployerService();
@@ -35,9 +41,43 @@ export default function SignUpEmployer() {
     },
     validationSchema: signUpEmployerSchema,
     onSubmit: (values) => {
-      employerService.add(values).then((result) => console.log(result.data.message));
+      employerService
+        .add(values)
+        .then((result) =>
+          result.data.success
+            ? success(result.data.message)
+            : error(result.data.message)
+        );
     },
   });
+  {
+    formik.errors.webSite &&
+      formik.touched.webSite &&
+      error(formik.errors.webSite);
+  }
+  {
+    formik.errors.companyName &&
+      formik.touched.companyName &&
+      error(formik.errors.companyName);
+  }
+  {
+    formik.errors.taxNumber &&
+      formik.touched.taxNumber &&
+      error(formik.errors.taxNumber);
+  }
+  {
+    formik.errors.phoneNumber &&
+      formik.touched.phoneNumber &&
+      info(formik.errors.phoneNumber);
+  }
+  {
+    formik.errors.email && formik.touched.email && info(formik.errors.email);
+  }
+  {
+    formik.errors.password &&
+      formik.touched.password &&
+      error(formik.errors.password);
+  }
 
   return (
     <div>
@@ -53,14 +93,15 @@ export default function SignUpEmployer() {
             marginTop: "5%",
           }}
         >
-         
-              <Header 
-              style={{
-                fontFamily: "sans-serif",
-                fontSize: "3em",
-              }}
-              color='blue'
-              > HRMS'e İşveren Olarak Kayıt Ol</Header>
+          <Header
+            style={{
+              fontFamily: "sans-serif",
+              fontSize: "3em",
+            }}
+            color="blue"
+          >
+            HRMS'e İşveren Olarak Kayıt Ol
+          </Header>
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group>
               <Input
@@ -75,11 +116,6 @@ export default function SignUpEmployer() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.errors.companyName && formik.touched.companyName && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.companyName}
-                </p>
-              )}
               <Input
                 fluid
                 label="Web Sitesi Adresiniz"
@@ -92,11 +128,6 @@ export default function SignUpEmployer() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.errors.webSite && formik.touched.webSite && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.webSite}
-                </p>
-              )}
             </Form.Group>
             <Form.Group>
               <Input
@@ -111,11 +142,6 @@ export default function SignUpEmployer() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.errors.taxNumber && formik.touched.taxNumber && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.taxNumber}
-                </p>
-              )}
               <Input
                 fluid
                 label="Telefon Numaranız"
@@ -128,11 +154,6 @@ export default function SignUpEmployer() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.phoneNumber}
-                </p>
-              )}
             </Form.Group>
             <Form.Field>
               <Input
@@ -148,11 +169,6 @@ export default function SignUpEmployer() {
                 type="email"
                 placeholder="example@email.com"
               />
-              {formik.errors.email && formik.touched.email && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.email}
-                </p>
-              )}
             </Form.Field>
             <Form.Field>
               <Input
@@ -162,16 +178,11 @@ export default function SignUpEmployer() {
                 type="password"
                 error={Boolean(formik.errors.password)}
                 onChange={formik.handleChange}
-                value={formik.values.DueDate}
+                value={formik.values.password}
                 onBlur={formik.handleBlur}
                 name="password"
                 placeholder="Parola"
               />
-              {formik.errors.password && formik.touched.password && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.password}
-                </p>
-              )}
             </Form.Field>
             <Form.Field>
               <Button

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Icon } from "semantic-ui-react";
 import JobAdvertService from "../../services/jobAdvertService";
-import JobAdvertAdd from "../../pages/JobAdvertAdd";
+import JobAdvertAdd from "./JobAdvertAdd";
+import { success, error } from 'react-toast-notification';
 
 export default function JobAdvertListEmployer() {
 
@@ -14,9 +15,8 @@ export default function JobAdvertListEmployer() {
 
   let remove = (jobAdvertId) => {
     jobAdvertService.closeAdvert(jobAdvertId).then(result => {
-      console.log(result.data);;
+      result.data.success?success(result.data.message):error(result.data.message);
     })
-    window.location.reload()
   };
 
     return (
@@ -64,7 +64,7 @@ export default function JobAdvertListEmployer() {
             <Button style={{width:'80%'}} color='green' active icon labelPosition="left"><Icon name='info'/>{jobAdvert.adStatusDescription}</Button>:
             <Button style={{width:'80%'}} color='yellow' active icon labelPosition="left"><Icon name='info'/>{jobAdvert.adStatusDescription}</Button>}
             </Table.Cell>
-        <Table.Cell><Button onClick={() => remove(jobAdvert.jobAdvertId)} style={{width:'100%'}} color='red' icon labelPosition="left"><Icon color='white' name='remove circle' size='large' /> KALDIR</Button></Table.Cell>
+        <Table.Cell><Button onClick={() => remove(jobAdvert.jobAdvertId)} style={{width:'100%'}} color='red' icon labelPosition="left"><Icon name='remove circle' size='large' /> KALDIR</Button></Table.Cell>
       </Table.Row>
       ))}
     </Table.Body>

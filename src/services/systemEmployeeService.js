@@ -1,8 +1,8 @@
 import axios from "axios"
 
 export default class SystemEmployeeSerivce{
-    add(){
-        return axios.create("http://localhost:8080/api/systememployees/add")
+    add(systemEmployee){
+        return axios.post("http://localhost:8080/api/systememployees/add",systemEmployee)
     }
 
     getSystemEmployees(){

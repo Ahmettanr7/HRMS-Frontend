@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import EmployerService from "../services/employerService";
+import EmployerService from "../../services/employerService";
 import { Table } from "semantic-ui-react";
 import 'semantic-ui-css/semantic.min.css'
 

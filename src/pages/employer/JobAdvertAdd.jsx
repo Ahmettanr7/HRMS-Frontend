@@ -7,12 +7,13 @@ import {
   TextArea,
   Form,
 } from "semantic-ui-react";
-import JobTypeService from "../services/JobTypeService";
-import JobAdvertService from "../services/jobAdvertService";
-import CityService from "../services/cityService";
-import PositionService from "../services/positionService";
+import JobTypeService from "../../services/JobTypeService";
+import JobAdvertService from "../../services/jobAdvertService";
+import CityService from "../../services/cityService";
+import PositionService from "../../services/positionService";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { success, error } from "react-toast-notification";
 
 export default function JobAdvertAdd({ triggerButton }) {
   let jobAdvertService = new JobAdvertService();
@@ -46,7 +47,11 @@ export default function JobAdvertAdd({ triggerButton }) {
       values.userId = 37;
       jobAdvertService
         .add(values)
-        .then((result) => console.log(result.data.message));
+        .then((result) =>
+          result.data.success
+            ? success(result.data.message)
+            : error(result.data.message)
+        );
     },
   });
 
@@ -194,7 +199,9 @@ export default function JobAdvertAdd({ triggerButton }) {
                   options={jobTimeOption}
                 />
                 {formik.errors.timeTypeId && formik.touched.timeTypeId && (
-                  <p style={{ fontSize: "small", color: "red" }}>{formik.errors.timeTypeId}</p>
+                  <p style={{ fontSize: "small", color: "red" }}>
+                    {formik.errors.timeTypeId}
+                  </p>
                 )}
               </Form.Field>
               <Form.Group>
@@ -206,8 +213,7 @@ export default function JobAdvertAdd({ triggerButton }) {
                   name="minSalary"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                >
-                </Input>
+                ></Input>
                 <Input
                   style={{ width: "50%" }}
                   type="number"
@@ -216,8 +222,7 @@ export default function JobAdvertAdd({ triggerButton }) {
                   name="maxSalary"
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                >
-                </Input>
+                ></Input>
               </Form.Group>
               <Form.Group>
                 <Input

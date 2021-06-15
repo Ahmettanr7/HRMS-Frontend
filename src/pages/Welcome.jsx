@@ -1,8 +1,8 @@
 import React from "react";
 import {  Grid, GridColumn, Image } from 'semantic-ui-react';
-import WelcomeEmployee from "./WelcomeEmployee";
-import WelcomeEmployer from "./WelcomeEmployer";
-import WelcomeLetsStart from "./WelcomeLetsStart";
+import WelcomeEmployee from "../layouts/WelcomeEmployee";
+import WelcomeEmployer from "../layouts/WelcomeEmployer";
+import WelcomeLetsStart from "../layouts/WelcomeLetsStart";
 
 export default function Welcome() {
   return (

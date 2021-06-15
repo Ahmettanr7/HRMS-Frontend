@@ -32,6 +32,8 @@ export default function Navi() {
           <Menu.Item link as={NavLink} to='/jobs'>İş Ara</Menu.Item>
             <Menu.Item link>Güncel İş Haberleri</Menu.Item>
             <Menu.Item link>Meslekler</Menu.Item>
+            <Menu.Item link as={NavLink} to='/admin'>ADMİN YÖNETİMİ <br /> (TEMSiLi)</Menu.Item>
+            <Menu.Item link as={NavLink} to='/employer'>İŞ VEREN YÖNETİMİ <br /> (TEMSiLi)</Menu.Item>
             <Menu.Menu position="right">
             {isAuthenticated?<Signedin signOut={handlerSignOut}/>:<SignedinOut signIn={handlerSignIn}/>}
             </Menu.Menu>
