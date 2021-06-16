@@ -10,9 +10,11 @@ import {
   Header,
 } from "semantic-ui-react";
 import EmployerService from "../services/employerService";
-import { success, error, info } from "react-toast-notification";
+import { useToasts } from "react-toast-notifications";
+import { info } from "react-toast-notification";
 
 export default function SignUpEmployer() {
+  const { addToast } = useToasts();
   const signUpEmployerSchema = Yup.object().shape({
     email: Yup.string()
       .email("Hatalı Email biçimi")
@@ -41,43 +43,39 @@ export default function SignUpEmployer() {
     },
     validationSchema: signUpEmployerSchema,
     onSubmit: (values) => {
-      employerService
-        .add(values)
-        .then((result) =>
-          result.data.success
-            ? success(result.data.message)
-            : error(result.data.message)
-        );
+      employerService.add(values).then((result) =>
+        addToast(result.data.message, {
+          appearance: result.data.success ? "success" : "error",
+          autoDismiss: true,
+        })
+      );
     },
   });
-  {
-    formik.errors.webSite &&
-      formik.touched.webSite &&
-      error(formik.errors.webSite);
-  }
-  {
+    {
+      formik.errors.webSite &&
+    formik.touched.webSite &&
+    info(formik.errors.webSite);
+
     formik.errors.companyName &&
-      formik.touched.companyName &&
-      error(formik.errors.companyName);
-  }
-  {
+    formik.touched.companyName &&
+    info(formik.errors.companyName);
+
     formik.errors.taxNumber &&
-      formik.touched.taxNumber &&
-      error(formik.errors.taxNumber);
-  }
-  {
+    formik.touched.taxNumber &&
+    info(formik.errors.taxNumber);
+
     formik.errors.phoneNumber &&
-      formik.touched.phoneNumber &&
-      info(formik.errors.phoneNumber);
-  }
-  {
-    formik.errors.email && formik.touched.email && info(formik.errors.email);
-  }
-  {
+    formik.touched.phoneNumber &&
+    info(formik.errors.phoneNumber);
+
+    formik.errors.email &&
+    formik.touched.email &&
+    info(formik.errors.email);
+
     formik.errors.password &&
-      formik.touched.password &&
-      error(formik.errors.password);
-  }
+    formik.touched.password &&
+    info(formik.errors.password);
+    }
 
   return (
     <div>

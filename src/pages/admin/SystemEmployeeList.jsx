@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import SystemEmployeeService from "../../services/systemEmployeeService";
 import SystemEmployeeAdd from "./SystemEmployeeAdd";
 import { Table, Button, Icon } from "semantic-ui-react";
-import { success, error } from 'react-toast-notification';
 
 export default function SystemEmployeeList() {
   const [systemEmployees, setSystemEmployees] = useState([]);
@@ -15,6 +14,15 @@ export default function SystemEmployeeList() {
   return (
     <div>
       <h1>SİSTEM ÇALIŞANLARI</h1>
+      <SystemEmployeeAdd
+                triggerButtonn={
+                  <Button
+                  style={{width:'100%'}}
+                  primary icon labelPosition="left">
+                    <Icon name="add" />
+                    Yeni Sistem Çalışanı Kaydı
+                  </Button>
+                }/>
       <Table celled selectable>
         <Table.Header>
           <Table.Row>
@@ -24,16 +32,6 @@ export default function SystemEmployeeList() {
             <Table.HeaderCell>Soyad</Table.HeaderCell>
             <Table.HeaderCell>İşe Başlama Tarihi</Table.HeaderCell>
             <Table.HeaderCell>Telefon numarası</Table.HeaderCell>
-            <Table.HeaderCell><SystemEmployeeAdd
-                triggerButtonn={
-                  <Button
-                  style={{width:'100%'}}
-                  primary icon labelPosition="left">
-                    <Icon name="add" />
-                    Yeni Sistem Çalışanı Kaydı
-                  </Button>
-                }
-              /></Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 

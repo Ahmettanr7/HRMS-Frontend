@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Table, Button, Icon } from "semantic-ui-react";
 import JobAdvertService from "../../services/jobAdvertService";
 import JobAdvertAdd from "./JobAdvertAdd";
-import { success, error } from 'react-toast-notification';
+import { useToasts } from 'react-toast-notifications';
 
 export default function JobAdvertListEmployer() {
+
+  const { addToast } = useToasts();
 
     let jobAdvertService = new JobAdvertService();
     const [jobAdverts, setJobAdverts] = useState([]);
@@ -15,7 +17,7 @@ export default function JobAdvertListEmployer() {
 
   let remove = (jobAdvertId) => {
     jobAdvertService.closeAdvert(jobAdvertId).then(result => {
-      result.data.success?success(result.data.message):error(result.data.message);
+      addToast(result.data.message, { appearance: result.data.success ? "success" : "error", autoDismiss: true });
     })
   };
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, CardGroup, Image } from "semantic-ui-react";
+import { Button, Card, CardGroup, Image, Icon } from "semantic-ui-react";
 import JobAdvertService from "../services/jobAdvertService";
 
 export default function JobAdvertList() {
@@ -28,14 +28,14 @@ export default function JobAdvertList() {
               />
               <Link to={`/jobs/${jobAdvert.jobAdvertId}`}>
               <Card.Header textAlign="center">{jobAdvert.position.positionName}</Card.Header>
-              <Card.Meta textAlign="right">{jobAdvert.city.cityName}</Card.Meta>
+              <Card.Meta textAlign="right"><Icon name='map marker alternate'/>{jobAdvert.city.cityName}</Card.Meta>
               <Card.Content textAlign="left">{jobAdvert.employer.companyName}</Card.Content>
-              <Card.Meta textAlign="left">Minimum Alım : {jobAdvert.quantity}</Card.Meta>
-              <Card.Meta textAlign="right"><i className='bell icon'></i> {jobAdvert.advertDate}</Card.Meta>
+              <Card.Meta textAlign="left">Açık Sayısı : {jobAdvert.quantity}</Card.Meta>
+              <Card.Meta textAlign="right"><Icon name='bell'/>{jobAdvert.advertDate}</Card.Meta>
               <Card.Meta textAlign="right">Son Başvuru Tarihi</Card.Meta>
-              <Card.Meta textAlign="right"><i className='bell slash icon'></i>  {jobAdvert.dueDate}</Card.Meta>
-              <Card.Meta textAlign="left"><i className='briefcase icon'></i> {jobAdvert.jobTypePlace.placeTypeName}</Card.Meta>
-              <Card.Meta textAlign="left"> <i className='time icon'></i> {jobAdvert.jobTypeTime.timeTypeName}</Card.Meta>
+              <Card.Meta textAlign="right"><Icon name='bell slash'/>{jobAdvert.dueDate}</Card.Meta>
+              <Card.Meta textAlign="left"><Icon name='briefcase'/>{jobAdvert.jobTypePlace.placeTypeName}</Card.Meta>
+              <Card.Meta textAlign="left"><Icon name='time'/>{jobAdvert.jobTypeTime.timeTypeName}</Card.Meta>
               </Link>
             </Card.Content>
             <Card.Content extra>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EmployeeService from "../../services/employeeService";
 import { Table } from "semantic-ui-react";
-import { success, error } from 'react-toast-notification';
 
 export default function EmployeeList() {
   const [employees, setEmployees] = useState([]);

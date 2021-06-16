@@ -11,22 +11,26 @@ import JobTypeService from "../../services/JobTypeService";
 import JobAdvertService from "../../services/jobAdvertService";
 import CityService from "../../services/cityService";
 import PositionService from "../../services/positionService";
+import { useToasts } from "react-toast-notifications";
+import { info } from "react-toast-notification";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { success, error } from "react-toast-notification";
 
 export default function JobAdvertAdd({ triggerButton }) {
+  const { addToast } = useToasts();
   let jobAdvertService = new JobAdvertService();
   const JobAdvertAddSchema = Yup.object().shape({
-    dueDate: Yup.date().nullable().required("Bu alanın doldurulması zorunlu"),
-    description: Yup.string().required("Bu alanın doldurulması zorunlu"),
-    positionId: Yup.string().required("Bu alanın doldurulması zorunlu"),
-    timeTypeId: Yup.string().required("Bu alanın doldurulması zorunlu"),
-    placeTypeId: Yup.string().required("Bu alanın doldurulması zorunlu"),
+    dueDate: Yup.date()
+      .nullable()
+      .required("Son başvuru tarihi doldurulması zorunlu"),
+    description: Yup.string().required("Açıklama zorunlu"),
+    positionId: Yup.array().required("Pozisyon seçimi zorunlu"),
+    timeTypeId: Yup.array().required("Çalışma şekli seçimi zorunlu"),
+    placeTypeId: Yup.array().required("Çalışma ortamı seçimi zorunlu"),
     quantity: Yup.number()
-      .required("Pozisyon Sayısı Zorunludur")
+      .required("Açık Sayısı Zorunludur")
       .min(0, "0 dan Küçük Olamaz"),
-    cityId: Yup.string().required("Bu alanın doldurulması zorunlu"),
+    cityId: Yup.string().required("Şehir seçimi zorunlu"),
   });
 
   const formik = useFormik({
@@ -45,13 +49,12 @@ export default function JobAdvertAdd({ triggerButton }) {
     validationSchema: JobAdvertAddSchema,
     onSubmit: (values) => {
       values.userId = 37;
-      jobAdvertService
-        .add(values)
-        .then((result) =>
-          result.data.success
-            ? success(result.data.message)
-            : error(result.data.message)
-        );
+      jobAdvertService.add(values).then((result) =>
+        addToast(result.data.message, {
+          appearance: result.data.success ? "success" : "error",
+          autoDismiss: true,
+        })
+      );
     },
   });
 
@@ -105,6 +108,34 @@ export default function JobAdvertAdd({ triggerButton }) {
     formik.setFieldValue(fieldName, value);
   };
 
+  {
+    formik.errors.cityId && formik.touched.cityId && info(formik.errors.cityId);
+
+    formik.errors.description &&
+      formik.touched.description &&
+      info(formik.errors.description);
+
+    formik.errors.dueDate &&
+      formik.touched.dueDate &&
+      info(formik.errors.dueDate);
+
+    formik.errors.placeTypeId &&
+      formik.touched.placeTypeId &&
+      info(formik.errors.placeTypeId);
+
+    formik.errors.positionId &&
+      formik.touched.positionId &&
+      info(formik.errors.positionId);
+
+    formik.errors.quantity &&
+      formik.touched.quantity &&
+      info(formik.errors.quantity);
+
+    formik.errors.timeTypeId &&
+      formik.touched.timeTypeId &&
+      info(formik.errors.timeTypeId);
+  }
+
   return (
     <div>
       <Modal
@@ -134,12 +165,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   value={formik.values.positionId}
                   options={positionOption}
                 />
-
-                {formik.errors.positionId && formik.touched.positionId && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.positionId}
-                  </p>
-                )}
               </Form.Field>
               <Form.Field>
                 <Dropdown
@@ -156,11 +181,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   value={formik.values.cityId}
                   options={cityOption}
                 />
-                {formik.errors.cityId && formik.touched.cityId && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.cityId}
-                  </p>
-                )}
               </Form.Field>
               <Form.Field>
                 <Dropdown
@@ -177,11 +197,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   value={formik.values.placeTypeId}
                   options={jobPlaceOption}
                 />
-                {formik.errors.placeTypeId && formik.touched.placeTypeId && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.placeTypeId}
-                  </p>
-                )}
               </Form.Field>
               <Form.Field>
                 <Dropdown
@@ -198,11 +213,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   value={formik.values.timeTypeId}
                   options={jobTimeOption}
                 />
-                {formik.errors.timeTypeId && formik.touched.timeTypeId && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.timeTypeId}
-                  </p>
-                )}
               </Form.Field>
               <Form.Group>
                 <Input
@@ -236,11 +246,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   type="number"
                   placeholder="Açık Miktarınız ?"
                 />
-                {formik.errors.quantity && formik.touched.quantity && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.quantity}
-                  </p>
-                )}
                 <Input
                   style={{ width: "50%" }}
                   type="date"
@@ -253,13 +258,7 @@ export default function JobAdvertAdd({ triggerButton }) {
                   name="dueDate"
                   placeholder="Son başvuru tarihi"
                 />
-                {formik.errors.dueDate && formik.touched.dueDate && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.dueDate}
-                  </p>
-                )}
               </Form.Group>
-
               <Form.Field>
                 <TextArea
                   placeholder="Açıklama"
@@ -270,11 +269,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.errors.description && formik.touched.description && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.description}
-                  </p>
-                )}
               </Form.Field>
               <Button
                 content="Ekle"

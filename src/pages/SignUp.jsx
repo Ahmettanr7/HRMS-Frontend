@@ -1,26 +1,38 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, Input, Form, GridColumn, Container, Header } from "semantic-ui-react";
+import {
+  Button,
+  Input,
+  Form,
+  GridColumn,
+  Container,
+  Header,
+} from "semantic-ui-react";
 import EmployeeService from "../services/employeeService";
+import { useToasts } from "react-toast-notifications";
+import { info } from "react-toast-notification";
 
 export default function SignUp() {
+  const { addToast } = useToasts();
   const signUpSchema = Yup.object().shape({
     email: Yup.string()
       .email("Hatalı Email biçimi")
-      .required("Bu alanın doldurulması zorunlu"),
-    password: Yup.string()
-      .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
+      .required("Email Adresinizi Giriniz"),
+    password: Yup.string().nullable().required("Parolanızı Oluşturunuz!"),
     firstName: Yup.string()
       .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
-    lastName: Yup.string()
+      .required("Lütfen adınızı bizimle paylaşınız!"),
+    lastName: Yup.string().nullable().required("Soyadınızı doldurunuz"),
+    nationalityId: Yup.number().required(
+      "Tc Kimlik numarası doldurulması zorunlu!"
+    ),
+    birthDate: Yup.date()
       .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
-    nationalityId: Yup.number().required("Bu alanın doldurulması zorunlu"),
-    birthDate: Yup.date().nullable().required("Bu alan zorunlu"),
-    phoneNumber: Yup.number().required("Bu alanın doldurulması zorunlu"),
+      .required("Lütfen doğum tarihinizi bizimle paylaşınız!"),
+    phoneNumber: Yup.number().required(
+      "Lütfen telefon numaranızı bizimle paylaşınız!"
+    ),
   });
 
   let employeeService = new EmployeeService();
@@ -37,12 +49,45 @@ export default function SignUp() {
     },
     validationSchema: signUpSchema,
     onSubmit: (values) => {
-      employeeService.add(values).then((result) => console.log(result.data.message));
+      employeeService.add(values).then((result) =>
+        addToast(result.data.message, {
+          appearance: result.data.success ? "success" : "error",
+          autoDismiss: true,
+        })
+      );
     },
   });
   const handleChangeSemantic = (value, fieldName) => {
     formik.setFieldValue(fieldName, value);
   };
+
+  {
+    formik.errors.firstName &&
+      formik.touched.firstName &&
+      info(formik.errors.firstName);
+
+    formik.errors.lastName &&
+      formik.touched.lastName &&
+      info(formik.errors.lastName);
+
+    formik.errors.phoneNumber &&
+      formik.touched.phoneNumber &&
+      info(formik.errors.phoneNumber);
+
+    formik.errors.email && formik.touched.email && info(formik.errors.email);
+
+    formik.errors.password &&
+      formik.touched.password &&
+      info(formik.errors.password);
+
+    formik.errors.birthDate &&
+      formik.touched.birthDate &&
+      info(formik.errors.birthDate);
+
+    formik.errors.nationalityId &&
+      formik.touched.nationalityId &&
+      info(formik.errors.nationalityId);
+  }
 
   return (
     <div>
@@ -58,12 +103,16 @@ export default function SignUp() {
             marginTop: "5%",
           }}
         >
-              <Header 
-              style={{
-                fontFamily: "sans-serif",
-                fontSize: "3em",
-              }}
-              color='blue'> HRMS'e Kayıt Ol</Header>
+          <Header
+            style={{
+              fontFamily: "sans-serif",
+              fontSize: "3em",
+            }}
+            color="blue"
+          >
+            {" "}
+            HRMS'e Kayıt Ol
+          </Header>
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group>
               <Input
@@ -78,11 +127,6 @@ export default function SignUp() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.errors.firstName && formik.touched.firstName && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.firstName}
-                </p>
-              )}
               <Input
                 fluid
                 label="Soyadınız"
@@ -95,11 +139,6 @@ export default function SignUp() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.errors.lastName && formik.touched.lastName && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.lastName}
-                </p>
-              )}
             </Form.Group>
             <Form.Group>
               <Input
@@ -114,11 +153,6 @@ export default function SignUp() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.errors.nationalityId && formik.touched.nationalityId && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.nationalityId}
-                </p>
-              )}
               <Input
                 fluid
                 label="Telefon Numaranız"
@@ -131,11 +165,6 @@ export default function SignUp() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.phoneNumber}
-                </p>
-              )}
             </Form.Group>
             <Form.Field>
               <Form.Field>
@@ -152,11 +181,6 @@ export default function SignUp() {
                   name="birthDate"
                   placeholder="Doğum Tarihi"
                 />
-                {formik.errors.dueDate && formik.touched.dueDate && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.dueDate}
-                  </p>
-                )}
               </Form.Field>
             </Form.Field>
             <Form.Field>
@@ -173,11 +197,6 @@ export default function SignUp() {
                 type="email"
                 placeholder="example@email.com"
               />
-              {formik.errors.email && formik.touched.email && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.email}
-                </p>
-              )}
             </Form.Field>
             <Form.Field>
               <Input
@@ -192,11 +211,6 @@ export default function SignUp() {
                 name="password"
                 placeholder="Parola"
               />
-              {formik.errors.password && formik.touched.password && (
-                <p style={{ fontSize: "small", color: "red" }}>
-                  {formik.errors.password}
-                </p>
-              )}
             </Form.Field>
             <Form.Field>
               <Button

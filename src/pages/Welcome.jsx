@@ -12,14 +12,14 @@ export default function Welcome() {
         <Grid>
           <Grid.Row>
             <Grid.Column width={8} floated="left">
-                <WelcomeEmployee></WelcomeEmployee>
+                <WelcomeEmployee/>
             </Grid.Column>
             <GridColumn width={8} floated="right">
-                <WelcomeEmployer></WelcomeEmployer>
+                <WelcomeEmployer/>
             </GridColumn>
           </Grid.Row>
         </Grid>
-        <WelcomeLetsStart></WelcomeLetsStart>
+        <WelcomeLetsStart/>
     </div>
   );
 }

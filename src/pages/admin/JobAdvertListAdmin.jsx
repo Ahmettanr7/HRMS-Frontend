@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Icon } from "semantic-ui-react";
 import JobAdvertService from "../../services/jobAdvertService";
-import { success, error } from 'react-toast-notification';
+import { useToasts } from 'react-toast-notifications';
 
 export default function JobAdvertListAdmin() {
+  const { addToast } = useToasts();
+
 
     let jobAdvertService = new JobAdvertService();
     const [jobAdverts, setJobAdverts] = useState([]);
@@ -14,13 +16,13 @@ export default function JobAdvertListAdmin() {
 
   let confirm = (jobAdvertId) => {
     jobAdvertService.confirmAdvert(jobAdvertId).then(result => {
-      result.data.success?success(result.data.message):error(result.data.message);
+      addToast(result.data.message, { appearance: result.data.success ? "success" : "error", autoDismiss: true });
     })
   };
 
   let remove = (jobAdvertId) => {
     jobAdvertService.closeAdvertAdmin(jobAdvertId).then(result => {
-      result.data.success?success(result.data.message):error(result.data.message);
+      addToast(result.data.message, { appearance: result.data.success ? "success" : "error", autoDismiss: true });
     })
   };
 

@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from "react";
 import { useParams } from "react-router";
-import { Button, Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image, Icon } from 'semantic-ui-react'
 import JobAdvertService from '../services/jobAdvertService';
 
 export default function JobAdvertDetail() {
@@ -24,13 +24,13 @@ export default function JobAdvertDetail() {
               src="https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623079064/rlcbpiy0y37s7ysdy1u5.jpg"
             />
             <Card.Header textAlign="center">{jobAdvert?.position?.positionName}</Card.Header>
-              <Card.Meta textAlign="right">{jobAdvert?.city?.cityName}</Card.Meta>
+              <Card.Meta textAlign="right">{jobAdvert?.city?.cityName}<Icon name='map marker alternate'/></Card.Meta>
               <Card.Content textAlign="left">{jobAdvert?.employer?.companyName}</Card.Content>
-              <Card.Meta textAlign="left"><i className='handshake icon'></i> Minimum Alım : {jobAdvert?.quantity}</Card.Meta>
-              <Card.Meta textAlign="left"><i className='money icon'></i> Maaş Aralığı</Card.Meta>
-              <Card.Meta textAlign="left">{jobAdvert?.minSalary}TL - {jobAdvert?.maxSalary}TL</Card.Meta>
-              <Card.Meta textAlign="left"><i className='briefcase icon'></i> {jobAdvert.jobTypePlace?.placeTypeName}</Card.Meta>
-              <Card.Meta textAlign="left"> <i className='time icon'></i> {jobAdvert.jobTypeTime?.timeTypeName}</Card.Meta>
+              <Card.Meta textAlign="left"><Icon name='handshake'/> Açık Sayısı : {jobAdvert?.quantity}</Card.Meta>
+              <Card.Meta textAlign="left"><Icon name='briefcase'/> {jobAdvert?.jobTypePlace?.placeTypeName}</Card.Meta>
+              <Card.Meta textAlign="left"><Icon name='time'/>{jobAdvert?.jobTypeTime?.timeTypeName}</Card.Meta>
+              <Card.Meta textAlign="left">Maaş Aralığı</Card.Meta>
+              <Card.Meta textAlign="left"><Icon name='try'/> {jobAdvert?.minSalary}TL - {jobAdvert?.maxSalary}TL</Card.Meta>
               <Card.Meta className='mt1bem' textAlign="right">Yayınlanma : {jobAdvert?.advertDate}</Card.Meta>
               <Card.Meta textAlign="right">Son başvuru : {jobAdvert?.dueDate}</Card.Meta>
               <Card.Header textAlign="center">Açıklama</Card.Header>
@@ -39,9 +39,9 @@ export default function JobAdvertDetail() {
             
             <Card.Header className='mt1bem'  style={{textDecoration:'underline'}}>İletişim Bilgileri</Card.Header>
             <Card.Header className='mt1bem' textAlign='right' >{jobAdvert?.employer?.companyName}</Card.Header>
-            <Card.Content className='mt1bem' textAlign='right'><a href="mailto:{jobAdvert?.employer?.email}">{jobAdvert?.employer?.email}<i className="mail icon"></i></a></Card.Content>
-            <Card.Content className='mt1bem' textAlign='right'><a href="tel:{jobAdvert?.employer?.phoneNumber}">{jobAdvert?.employer?.phoneNumber}<i className="phone icon"></i></a></Card.Content>
-            <Card.Content className='mt1bem' textAlign='right'><a  href={jobAdvert?.employer?.webSite}>{jobAdvert?.employer?.webSite}</a></Card.Content>
+            <Card.Content className='mt1bem' textAlign='right'><a href="mailto:{jobAdvert?.employer?.email}">{jobAdvert?.employer?.email} </a><Icon name='mail'/></Card.Content>
+            <Card.Content className='mt1bem' textAlign='right'><a href="tel:{jobAdvert?.employer?.phoneNumber}">{jobAdvert?.employer?.phoneNumber}</a> <Icon name='phone'/></Card.Content>
+            <Card.Content className='mt1bem' textAlign='right'><a  href={jobAdvert?.employer?.webSite} target='_blank'>{jobAdvert?.employer?.webSite}</a> <Icon name='world'/></Card.Content>
           </Card.Content>
           <Card.Content extra>
             <div className="ui two buttons">

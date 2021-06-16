@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Button, Input, Modal, Form } from "semantic-ui-react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { success, error } from "react-toast-notification";
+import { useToasts } from "react-toast-notifications";
+import { info } from "react-toast-notification";
 import SystemEmployeeSerivce from "../../services/systemEmployeeService";
 
 export default function SystemEmployeeAdd({ triggerButtonn }) {
+  const { addToast } = useToasts();
 
   const [open, setOpen] = useState(false);
 
@@ -14,19 +16,12 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
   const systemEmployeeSchema = Yup.object().shape({
     email: Yup.string()
       .email("Hatalı Email biçimi")
-      .required("Bu alanın doldurulması zorunlu"),
-    password: Yup.string()
-      .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
-    firstName: Yup.string()
-      .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
-    lastName: Yup.string()
-      .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
-    phoneNumber: Yup.number().required("Bu alanın doldurulması zorunlu"),
+      .required("Email adresi giriniz!"),
+    password: Yup.string().nullable().required("Parola oluşturunuz!"),
+    firstName: Yup.string().nullable().required("İsim alanını doldurunuz!"),
+    lastName: Yup.string().nullable().required("Soyad alanını doldurunuz"),
+    phoneNumber: Yup.number().required("telefon alanını doldurunuz!"),
   });
-
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -38,12 +33,34 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
     validationSchema: systemEmployeeSchema,
     onSubmit: (values) => {
       systemEmployeeService.add(values).then((result) =>
-          result.data.success? success(result.data.message): error(result.data.message)
-        );
-        
+        addToast(result.data.message, {
+          appearance: result.data.success ? "success" : "error",
+          autoDismiss: true,
+        })
+      );
     },
   });
 
+  {
+    formik.errors.firstName &&
+    formik.touched.firstName &&
+    info(formik.errors.firstName);
+
+  formik.errors.lastName &&
+    formik.touched.lastName &&
+    info(formik.errors.lastName);
+
+  formik.errors.phoneNumber &&
+    formik.touched.phoneNumber &&
+    info(formik.errors.phoneNumber);
+
+  formik.errors.email && formik.touched.email && info(formik.errors.email);
+
+  formik.errors.password &&
+    formik.touched.password &&
+    info(formik.errors.password);
+
+  }
 
   return (
     <div>
@@ -72,11 +89,6 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.errors.firstName && formik.touched.firstName && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.firstName}
-                  </p>
-                )}
                 <Input
                   fluid
                   label="Soyad"
@@ -89,11 +101,6 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.errors.lastName && formik.touched.lastName && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.lastName}
-                  </p>
-                )}
               </Form.Group>
               <Form.Group>
                 <Input
@@ -108,11 +115,6 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.errors.email && formik.touched.email && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.email}
-                  </p>
-                )}
                 <Input
                   fluid
                   label="Telefon Numarası"
@@ -125,11 +127,6 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
-                {formik.errors.phoneNumber && formik.touched.phoneNumber && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.phoneNumber}
-                  </p>
-                )}
               </Form.Group>
               <Form.Field>
                 <Input
@@ -144,11 +141,6 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
                   name="password"
                   placeholder="Parola"
                 />
-                {formik.errors.password && formik.touched.password && (
-                  <p style={{ fontSize: "small", color: "red" }}>
-                    {formik.errors.password}
-                  </p>
-                )}
               </Form.Field>
               <Form.Field>
                 <Button
