@@ -10,7 +10,7 @@ import {
   Header,
   Image
 } from "semantic-ui-react";
-import EmployerService from "../services/employerService";
+import EmployerService from "../../services/employerService";
 import { useToasts } from "react-toast-notifications";
 import { info } from "react-toast-notification";
 

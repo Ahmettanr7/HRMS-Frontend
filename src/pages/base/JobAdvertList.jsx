@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, CardGroup, Image, Icon } from "semantic-ui-react";
-import JobAdvertService from "../services/jobAdvertService";
+import JobAdvertService from "../../services/jobAdvertService";
 
 export default function JobAdvertList() {
   const [jobAdverts, setJobAdverts] = useState([]);

@@ -1,14 +1,14 @@
 import { Container, Grid, GridColumn } from 'semantic-ui-react';
 import Navi from './Navi';
 import Filter from './Filter';
-import JobAdvertDetail from '../../pages/JobAdvertDetail';
-import SignIn from '../../pages/SignIn';
-import SignUp from '../../pages/SignUp';
+import JobAdvertDetail from '../../pages/base/JobAdvertDetail';
+import SignIn from '../../pages/base/SignIn';
+import SignUp from '../../pages/base/SignUp';
 import Footer from './Footer';
 import { Route } from 'react-router';
-import Welcome from '../../pages/Welcome';
-import SignUpEmployer from '../../pages/SignUpEmployer';
-import JobAdvertList from '../../pages/JobAdvertList';
+import Welcome from '../../pages/base/Welcome';
+import SignUpEmployer from '../../pages/base/SignUpEmployer';
+import JobAdvertList from '../../pages/base/JobAdvertList';
 import FilterTop from './FilterTop';
 
 export default function Dashboard() {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Button, Card, Image, Icon, Segment, Label } from "semantic-ui-react";
-import JobAdvertService from "../services/jobAdvertService";
+import JobAdvertService from "../../services/jobAdvertService";
 
 export default function JobAdvertDetail() {
   let { jobAdvertId } = useParams();
