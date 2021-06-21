@@ -8,6 +8,7 @@ import {
   GridColumn,
   Container,
   Header,
+  Image
 } from "semantic-ui-react";
 import EmployerService from "../services/employerService";
 import { useToasts } from "react-toast-notifications";
@@ -51,7 +52,7 @@ export default function SignUpEmployer() {
       );
     },
   });
-    {
+    
       formik.errors.webSite &&
     formik.touched.webSite &&
     info(formik.errors.webSite);
@@ -75,7 +76,6 @@ export default function SignUpEmployer() {
     formik.errors.password &&
     formik.touched.password &&
     info(formik.errors.password);
-    }
 
   return (
     <div>
@@ -88,9 +88,10 @@ export default function SignUpEmployer() {
             height: "90vh",
             width: "60%",
             marginLeft: "20%",
-            marginTop: "5%",
+            marginTop: "0.5em",
           }}
         >
+          <Image disabled size="medium" centered src="https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623937041/HRMS_uwium1.png"/> 
           <Header
             style={{
               fontFamily: "sans-serif",
@@ -104,10 +105,9 @@ export default function SignUpEmployer() {
             <Form.Group>
               <Input
                 fluid
-                label="Şirket Adı"
+                placeholder="Şirket Adı"
                 style={{ width: "49%" }}
                 type="text"
-                placeholder="Ahmet"
                 error={Boolean(formik.errors.companyName)}
                 value={formik.values.companyName}
                 name="companyName"
@@ -116,10 +116,9 @@ export default function SignUpEmployer() {
               />
               <Input
                 fluid
-                label="Web Sitesi Adresiniz"
+                placeholder="Web Sitesi Adresiniz"
                 style={{ width: "50%" }}
                 type="text"
-                placeholder="ex.com"
                 error={Boolean(formik.errors.webSite)}
                 value={formik.values.webSite}
                 name="webSite"
@@ -130,10 +129,9 @@ export default function SignUpEmployer() {
             <Form.Group>
               <Input
                 fluid
-                label="Vergi Numaranız"
+                placeholder="Vergi Numaranız"
                 style={{ width: "49%" }}
                 type="text"
-                placeholder="Vergi Numaranız"
                 error={Boolean(formik.errors.taxNumber)}
                 value={formik.values.taxNumber}
                 name="taxNumber"
@@ -142,10 +140,9 @@ export default function SignUpEmployer() {
               />
               <Input
                 fluid
-                label="Telefon Numaranız"
+                placeholder="Telefon Numaranız"
                 style={{ width: "50%" }}
                 type="text"
-                placeholder="55555555555"
                 error={Boolean(formik.errors.phoneNumber)}
                 value={formik.values.phoneNumber}
                 name="phoneNumber"
@@ -156,7 +153,7 @@ export default function SignUpEmployer() {
             <Form.Field>
               <Input
                 fluid
-                label="Email Adresiniz"
+                placeholder="Email Adresiniz"
                 style={{ width: "100%" }}
                 id="email"
                 name="email"
@@ -165,13 +162,12 @@ export default function SignUpEmployer() {
                 value={formik.values.email}
                 onBlur={formik.handleBlur}
                 type="email"
-                placeholder="example@email.com"
               />
             </Form.Field>
             <Form.Field>
               <Input
                 fluid
-                label="Parola oluşturunuz"
+                placeholder="Parola oluşturunuz"
                 style={{ width: "100%" }}
                 type="password"
                 error={Boolean(formik.errors.password)}
@@ -179,7 +175,6 @@ export default function SignUpEmployer() {
                 value={formik.values.password}
                 onBlur={formik.handleBlur}
                 name="password"
-                placeholder="Parola"
               />
             </Form.Field>
             <Form.Field>
@@ -192,7 +187,6 @@ export default function SignUpEmployer() {
                 basic
                 active
                 type="submit"
-                style={{ marginLeft: "20px" }}
               />
             </Form.Field>
           </Form>

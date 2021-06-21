@@ -1,11 +1,11 @@
 import React from "react";
-import { Grid,  GridColumn,  Segment } from "semantic-ui-react";
+import { Grid,  Segment } from "semantic-ui-react";
 import { Route } from "react-router";
-import JobAdvertListAdmin from "../pages/admin/JobAdvertListAdmin";
-import EmployeeList from "../pages/admin/EmployeeList";
-import AdminMenu from "../layouts/AdminMenu";
-import EmployerList from "../pages/admin/EmployerList";
-import SystemEmployeeList from "../pages/admin/SystemEmployeeList";
+import JobAdvertListAdmin from "../../pages/admin/JobAdvertListAdmin";
+import EmployeeList from "../../pages/admin/EmployeeList";
+import AdminMenu from "./AdminMenu";
+import EmployerList from "../../pages/admin/EmployerList";
+import SystemEmployeeList from "../../pages/admin/SystemEmployeeList";
 
 export default function AdminDashboard() {
   return (

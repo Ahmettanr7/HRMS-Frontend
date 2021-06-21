@@ -41,7 +41,7 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
     },
   });
 
-  {
+
     formik.errors.firstName &&
     formik.touched.firstName &&
     info(formik.errors.firstName);
@@ -59,8 +59,6 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
   formik.errors.password &&
     formik.touched.password &&
     info(formik.errors.password);
-
-  }
 
   return (
     <div>

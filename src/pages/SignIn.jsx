@@ -9,23 +9,15 @@ import {
   Container,
   Button,
   Checkbox,
+  Image
 } from "semantic-ui-react";
 
 export default function SignIn() {
-  const signInSchema = Yup.object().shape({
-    email: Yup.string()
-      .email("Hatalı Email biçimi")
-      .required("Bu alanın doldurulması zorunlu"),
-    password: Yup.string()
-      .nullable()
-      .required("Bu alanın doldurulması zorunlu"),
-  });
   const formik = useFormik({
     initialValues: {
       email: "",
       password: "",
     },
-    validationSchema: signInSchema,
     onSubmit: (values) => {
       console.log(values);
     },
@@ -44,17 +36,18 @@ export default function SignIn() {
             textAlign: "center",
             display: "block",
             alignItems: "center",
-            height: "80vh",
+            height: "90vh",
             width: "60%",
             marginLeft: "20%",
-            marginTop: "8%",
+            marginTop: "0.5em",
           }}
         >
+          <Image avatar size="medium"  src="https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623937041/HRMS_uwium1.png"/> 
           <h1
             style={{
               color: "#1979F5",
               fontFamily: "sans-serif",
-              fontSize: "3em",
+              fontSize: "2.5em",
             }}
           >
             HRMS'e Giriş Yap
@@ -75,11 +68,6 @@ export default function SignIn() {
                 onBlur={formik.handleBlur}
               />
             </Form.Field>
-            {formik.errors.Email && formik.touched.Email && (
-              <p style={{ fontSize: "small", color: "red" }}>
-                {formik.errors.Email}
-              </p>
-            )}
             <Form.Field>
               <Label active circular content="Parola" prompt size="huge" />
               <Input
@@ -95,17 +83,12 @@ export default function SignIn() {
                 onBlur={formik.handleBlur}
               />
             </Form.Field>
-            {formik.errors.password && formik.touched.password && (
-              <p style={{ fontSize: "small", color: "red" }}>
-                {formik.errors.password}
-              </p>
-            )}
             <Form.Field>
               <Form.Field>
                 <Checkbox
                   style={{
                     float: "right",
-                    padding: "20px",
+                    padding: "15px",
                   }}
                   defaultChecked
                   label="Beni hatırla"

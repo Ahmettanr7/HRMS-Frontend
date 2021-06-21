@@ -1,7 +1,8 @@
 import React from "react";
 import { Route } from "react-router";
 import {  Grid, Segment } from 'semantic-ui-react';
-import JobAdvertListEmployer from '../pages/employer/jobAdvertListEmployer';
+import Home from "../../pages/employer/Home";
+import JobAdvertListEmployer from '../../pages/employer/jobAdvertListEmployer';
 import EmployerMenu from "./EmployerMenu";
 
 export default function EmployerDashboard (){
@@ -14,6 +15,7 @@ export default function EmployerDashboard (){
         </Grid.Column>
         <Grid.Column style={{marginLeft:'2em'}} stretched width={12}>
           <Segment>
+            <Route exact path='/employer' component={Home}/>
           <Route exact path='/employer/jobadvertlist' component={JobAdvertListEmployer}/>
           </Segment>
         </Grid.Column>

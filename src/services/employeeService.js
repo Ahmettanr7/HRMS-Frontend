@@ -9,7 +9,11 @@ export default class EmployeeService{
         return axios.get("http://localhost:8080/api/employees/getall")
     }
 
-    getCvByUserId(){
-        return axios.get("http://localhost:8080/api/employees/getcvbyuserid")
+    getCvByUserId(userId){
+        return axios.get("http://localhost:8080/api/employees/getcvbyuserid?userId="+userId)
+    }
+
+    getByUserId(userId){
+        return axios.get("http://localhost:8080/api/employees/getbyuserid?userId="+userId)
     }
 }

@@ -2,32 +2,36 @@ import React from "react";
 import { Dropdown, Icon, Menu, Header } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 
-
-export default function EmployerMenu() {
+export default function AdminMenu() {
   return (
-    <div>
-      <Menu vertical size='huge'>
+    <div >
+      <Menu  className="managementMenu" vertical size='huge'>
         <Menu.Header><Header block inverted sub>YONETIM</Header></Menu.Header>
-        <Menu.Item link as={NavLink} to="/employer">
+        <Menu.Item link as={NavLink} to="/admin">
         <Icon name="home" />
           Home
           <Menu.Menu>
           </Menu.Menu>
         </Menu.Item>
 
-        <Menu.Item link as={NavLink} to="/employer/jobadvertlist">
+        <Menu.Item link as={NavLink} to="/admin/jobadvertlist">
           <Icon name="list" />
-          ILANLARIM
+          ILANLAR
         </Menu.Item>
 
-        <Menu.Item>
+        <Menu.Item link as={NavLink} to="/admin/employerlist">
           <Icon name="list" />
-         2
+          IS VERENLER
         </Menu.Item>
 
-        <Menu.Item link>
+        <Menu.Item link as={NavLink} to="/admin/employeelist">
           <Icon name="list" />
-          3
+          IS ARAYANLAR
+        </Menu.Item>
+
+        <Menu.Item link as={NavLink} to="/admin/systememployeelist">
+          <Icon name="list" />
+          SISTEM CALISANLARI
         </Menu.Item>
 
         <Dropdown item text="More">
@@ -38,22 +42,6 @@ export default function EmployerMenu() {
           </Dropdown.Menu>
         </Dropdown>
       </Menu>
-      {/* <Menu pointing vertical size="massive">
-        <Menu.Item link labelPosition="left"  as={NavLink} to="/employer/jobadvertlist">
-          ILANLARIM
-        </Menu.Item>
-
-        <Menu.Item link name="spam">
-          2
-        </Menu.Item>
-
-        <Menu.Item link name="updates">
-          3
-        </Menu.Item>
-        <Menu.Item link name="updates">
-          4
-        </Menu.Item>
-      </Menu> */}
     </div>
   );
 }

@@ -8,6 +8,7 @@ import {
   GridColumn,
   Container,
   Header,
+  Image,
 } from "semantic-ui-react";
 import EmployeeService from "../services/employeeService";
 import { useToasts } from "react-toast-notifications";
@@ -61,7 +62,7 @@ export default function SignUp() {
     formik.setFieldValue(fieldName, value);
   };
 
-  {
+  
     formik.errors.firstName &&
       formik.touched.firstName &&
       info(formik.errors.firstName);
@@ -87,7 +88,7 @@ export default function SignUp() {
     formik.errors.nationalityId &&
       formik.touched.nationalityId &&
       info(formik.errors.nationalityId);
-  }
+
 
   return (
     <div>
@@ -100,9 +101,10 @@ export default function SignUp() {
             height: "90vh",
             width: "60%",
             marginLeft: "20%",
-            marginTop: "5%",
+            marginTop:"0.5em"
           }}
         >
+           <Image disabled size="medium" centered src="https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623937041/HRMS_uwium1.png"/> 
           <Header
             style={{
               fontFamily: "sans-serif",
@@ -110,17 +112,15 @@ export default function SignUp() {
             }}
             color="blue"
           >
-            {" "}
             HRMS'e Kayıt Ol
           </Header>
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group>
               <Input
                 fluid
-                label="Adınız"
                 style={{ width: "49%" }}
                 type="text"
-                placeholder="Ahmet"
+                placeholder="Ad"
                 error={Boolean(formik.errors.description)}
                 value={formik.values.firstName}
                 name="firstName"
@@ -129,10 +129,9 @@ export default function SignUp() {
               />
               <Input
                 fluid
-                label="Soyadınız"
                 style={{ width: "50%" }}
                 type="text"
-                placeholder="Tanrıkulu"
+                placeholder="Soyad"
                 error={Boolean(formik.errors.lastName)}
                 value={formik.values.lastName}
                 name="lastName"
@@ -143,7 +142,6 @@ export default function SignUp() {
             <Form.Group>
               <Input
                 fluid
-                label="Tc Kimlik Numaranız"
                 style={{ width: "50%" }}
                 type="text"
                 placeholder="Tc Kimlik Numarası"
@@ -155,10 +153,9 @@ export default function SignUp() {
               />
               <Input
                 fluid
-                label="Telefon Numaranız"
                 style={{ width: "49%" }}
                 type="text"
-                placeholder="55555555555"
+                placeholder="Telefon Numaranız"
                 error={Boolean(formik.errors.phoneNumber)}
                 value={formik.values.phoneNumber}
                 name="phoneNumber"
@@ -166,27 +163,10 @@ export default function SignUp() {
                 onBlur={formik.handleBlur}
               />
             </Form.Group>
-            <Form.Field>
-              <Form.Field>
-                <Input
-                  fluid
-                  label="Doğum Tarihiniz"
-                  type="date"
-                  error={Boolean(formik.errors.birthDate)}
-                  onChange={(event, data) =>
-                    handleChangeSemantic(data.value, "birthDate")
-                  }
-                  value={formik.values.birthDate}
-                  onBlur={formik.handleBlur}
-                  name="birthDate"
-                  placeholder="Doğum Tarihi"
-                />
-              </Form.Field>
-            </Form.Field>
+              
             <Form.Field>
               <Input
                 fluid
-                label="Email Adresiniz"
                 style={{ width: "100%" }}
                 id="email"
                 name="email"
@@ -195,13 +175,12 @@ export default function SignUp() {
                 value={formik.values.email}
                 onBlur={formik.handleBlur}
                 type="email"
-                placeholder="example@email.com"
+                placeholder="Email"
               />
             </Form.Field>
             <Form.Field>
               <Input
                 fluid
-                label="Parola oluşturunuz"
                 style={{ width: "100%" }}
                 type="password"
                 error={Boolean(formik.errors.password)}
@@ -209,9 +188,24 @@ export default function SignUp() {
                 value={formik.values.DueDate}
                 onBlur={formik.handleBlur}
                 name="password"
-                placeholder="Parola"
+                placeholder="Parola oluşturunuz"
               />
             </Form.Field>
+            <Form.Field>
+                <Input
+                  fluid
+                  label="Doğum Tarihi"
+                  labelPosition="left"
+                  type="date"
+                  error={Boolean(formik.errors.birthDate)}
+                  onChange={(event, data) =>
+                    handleChangeSemantic(data.value, "birthDate")
+                  }
+                  value={formik.values.birthDate}
+                  onBlur={formik.handleBlur}
+                  name="birthDate"
+                />
+              </Form.Field>
             <Form.Field>
               <Button
                 content="Kaydol"
@@ -222,7 +216,6 @@ export default function SignUp() {
                 basic
                 active
                 type="submit"
-                style={{ marginLeft: "20px" }}
               />
             </Form.Field>
           </Form>

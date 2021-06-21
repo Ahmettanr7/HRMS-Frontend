@@ -4,7 +4,6 @@ import {
   Dropdown,
   Input,
   Modal,
-  TextArea,
   Form,
 } from "semantic-ui-react";
 import JobTypeService from "../../services/JobTypeService";
@@ -15,6 +14,7 @@ import { useToasts } from "react-toast-notifications";
 import { info } from "react-toast-notification";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import RichTextEditor from '../../components/RichTextEditor/RichTextEditor';
 
 export default function JobAdvertAdd({ triggerButton }) {
   const { addToast } = useToasts();
@@ -24,9 +24,9 @@ export default function JobAdvertAdd({ triggerButton }) {
       .nullable()
       .required("Son başvuru tarihi doldurulması zorunlu"),
     description: Yup.string().required("Açıklama zorunlu"),
-    positionId: Yup.array().required("Pozisyon seçimi zorunlu"),
-    timeTypeId: Yup.array().required("Çalışma şekli seçimi zorunlu"),
-    placeTypeId: Yup.array().required("Çalışma ortamı seçimi zorunlu"),
+    positionId: Yup.string().required("Pozisyon seçimi zorunlu"),
+    timeTypeId: Yup.string().required("Çalışma şekli seçimi zorunlu"),
+    placeTypeId: Yup.string().required("Çalışma ortamı seçimi zorunlu"),
     quantity: Yup.number()
       .required("Açık Sayısı Zorunludur")
       .min(0, "0 dan Küçük Olamaz"),
@@ -48,13 +48,14 @@ export default function JobAdvertAdd({ triggerButton }) {
     },
     validationSchema: JobAdvertAddSchema,
     onSubmit: (values) => {
-      values.userId = 37;
+      values.userId = 34;
       jobAdvertService.add(values).then((result) =>
         addToast(result.data.message, {
           appearance: result.data.success ? "success" : "error",
           autoDismiss: true,
         })
       );
+       setOpen(false)
     },
   });
 
@@ -108,33 +109,38 @@ export default function JobAdvertAdd({ triggerButton }) {
     formik.setFieldValue(fieldName, value);
   };
 
-  {
-    formik.errors.cityId && formik.touched.cityId && info(formik.errors.cityId);
-
-    formik.errors.description &&
-      formik.touched.description &&
-      info(formik.errors.description);
-
-    formik.errors.dueDate &&
-      formik.touched.dueDate &&
-      info(formik.errors.dueDate);
-
-    formik.errors.placeTypeId &&
-      formik.touched.placeTypeId &&
-      info(formik.errors.placeTypeId);
-
-    formik.errors.positionId &&
-      formik.touched.positionId &&
-      info(formik.errors.positionId);
-
-    formik.errors.quantity &&
-      formik.touched.quantity &&
-      info(formik.errors.quantity);
-
-    formik.errors.timeTypeId &&
-      formik.touched.timeTypeId &&
-      info(formik.errors.timeTypeId);
+  const handleRichTextEditorInput = (value) => {
+    formik.setFieldValue("description", value)
   }
+
+  formik.errors.cityId &&
+  formik.touched.cityId &&
+  info(formik.errors.cityId);
+
+  formik.errors.description &&
+    formik.touched.description &&
+    info(formik.errors.description);
+
+  formik.errors.dueDate &&
+    formik.touched.dueDate &&
+    info(formik.errors.dueDate);
+
+  formik.errors.placeTypeId &&
+    formik.touched.placeTypeId &&
+    info(formik.errors.placeTypeId);
+
+  formik.errors.positionId &&
+    formik.touched.positionId &&
+    info(formik.errors.positionId);
+
+  formik.errors.quantity &&
+    formik.touched.quantity &&
+    info(formik.errors.quantity);
+
+  formik.errors.timeTypeId &&
+    formik.touched.timeTypeId &&
+    info(formik.errors.timeTypeId);
+
 
   return (
     <div>
@@ -155,7 +161,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   clearable
                   item
                   placeholder="Arayışınız Hangi Pozisyonda ?"
-                  search
                   selection
                   onChange={(event, data) =>
                     handleChangeSemantic(data.value, "positionId")
@@ -171,7 +176,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   clearable
                   item
                   placeholder="Şehir?"
-                  search
                   selection
                   onChange={(event, data) =>
                     handleChangeSemantic(data.value, "cityId")
@@ -187,7 +191,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   clearable
                   item
                   placeholder="Çalışma Ortamı ?"
-                  search
                   selection
                   onChange={(event, data) =>
                     handleChangeSemantic(data.value, "placeTypeId")
@@ -203,7 +206,6 @@ export default function JobAdvertAdd({ triggerButton }) {
                   clearable
                   item
                   placeholder="Çalışma Şekli ?"
-                  search
                   selection
                   onChange={(event, data) =>
                     handleChangeSemantic(data.value, "timeTypeId")
@@ -249,6 +251,8 @@ export default function JobAdvertAdd({ triggerButton }) {
                 <Input
                   style={{ width: "50%" }}
                   type="date"
+                  label="Son başvuru tarihi"
+                  labelPosition="left corner"
                   error={Boolean(formik.errors.dueDate)}
                   onChange={(event, data) =>
                     handleChangeSemantic(data.value, "dueDate")
@@ -260,15 +264,11 @@ export default function JobAdvertAdd({ triggerButton }) {
                 />
               </Form.Group>
               <Form.Field>
-                <TextArea
-                  placeholder="Açıklama"
-                  style={{ minHeight: 100 }}
-                  error={Boolean(formik.errors.description).toString()}
-                  value={formik.values.description}
-                  name="description"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                />
+          <RichTextEditor
+            name="description"
+            textValue={handleRichTextEditorInput}
+            onBlur={formik.handleBlur}
+          />
               </Form.Field>
               <Button
                 content="Ekle"

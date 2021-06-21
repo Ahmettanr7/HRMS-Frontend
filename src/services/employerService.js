@@ -8,4 +8,8 @@ export default class EmployerService{
     getEmployers(){
         return axios.get("http://localhost:8080/api/employers/getall")
     }
+
+    getByUserId(userId){
+        return axios.get("http://localhost:8080/api/employers/getbyuserid?userId="+userId)
+    }
 }

@@ -1,13 +1,23 @@
 .App {
   text-align: center;
-  background-color:#ebf0f3;
-  z-index: -1;
+  background-color: #e7e3e3;
 }
 .p1em{
   padding-bottom: 1em !important; 
 }
 .w100{
   width: 100% !important;
+}
+.managementMenu{
+		position: fixed;
+		top: 0 !important;
+    height: 50em !important;
+    background-color: lightslategray !important;
+    z-index: 1;
+}
+#filterTopMenu{
+  color:white;
+  background-color: brown;
 }
 .mt1em{
   margin-top: 1em !important;
@@ -43,7 +53,6 @@
   border-radius: 10px;
 }
 #navi{
-  /* background-color: #cbdef0; */
   background-color:#ebf0f3;
 }
 #searchFilter{
