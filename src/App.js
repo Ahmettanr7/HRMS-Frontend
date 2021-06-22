@@ -26,6 +26,7 @@ function App() {
         component={EmployerDashboard}
       />
       <Route exact path="/employee" component={EmployeeDashboard} />
+      <Route exact path="/employee/saved" component={EmployeeDashboard} />
       <Route exact path="/employee/cv" component={EmployeeDashboard} />
     </div>
   );

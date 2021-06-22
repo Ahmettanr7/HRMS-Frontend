@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Button, Card, Image, Icon, Segment, Label } from "semantic-ui-react";
 import JobAdvertService from "../../services/jobAdvertService";
+import { useToasts } from "react-toast-notifications";
+import FavoriteService from "../../services/favoriteService";
 
 export default function JobAdvertDetail() {
+
+  const { addToast } = useToasts();
+
   let { jobAdvertId } = useParams();
 
   const [jobAdvert, setJobAdvert] = useState({});
@@ -14,16 +19,31 @@ export default function JobAdvertDetail() {
       .getByJobAdvertId(jobAdvertId)
       .then((result) => setJobAdvert(result.data.data));
   }, []);
+
+  let addToSave = (jobAdvertId) => {
+    let favoriteService = new FavoriteService();
+    const values ={
+      userId:40,
+      jobAdvertId:jobAdvertId
+    }
+    favoriteService.add(values).then((result) => {
+      addToast(result.data.message, {
+        appearance: result.data.success ? "success" : "error",
+        autoDismiss: true,
+      });
+    });
+  };
+
   return (
     <div>
       <Card.Group>
         <Card fluid>
           <Card.Content>
-            <Segment horizontal basic secondary textAlign="left">
+            <Segment  basic secondary textAlign="left">
               <Label basic attached="top">
                 İLAN DETAYI
               </Label>
-              <Segment horizontal>
+              <Segment >
                 {jobAdvert?.employer?.image ? (
                   <Image
                     bordered
@@ -74,7 +94,7 @@ export default function JobAdvertDetail() {
                   Son başvuru : {jobAdvert?.dueDate}
                 </Card.Meta>
               </Segment>
-              <Segment horizontal>
+              <Segment >
                 <Label basic attached="top">
                   İŞVERENİN AÇIKLAMASI
                 </Label>
@@ -84,7 +104,7 @@ export default function JobAdvertDetail() {
                   }}
                 />
               </Segment>
-              <Segment horizontal>
+              <Segment >
                 <Label basic attached="top">
                   İLETİŞİM BİLGİLERİ
                 </Label>
@@ -122,7 +142,9 @@ export default function JobAdvertDetail() {
               <Button basic color="green">
                 Başvur
               </Button>
-              <Button basic color="red">
+              <Button 
+              onClick={() => addToSave(jobAdvert.jobAdvertId)}
+              basic color="red">
                 Kaydet
               </Button>
             </div>

@@ -14,7 +14,7 @@ export default function EmployeeMenu() {
           </Menu.Menu>
         </Menu.Item>
 
-        <Menu.Item link>
+        <Menu.Item link as={NavLink} to="/employee/saved">
           <Icon name="heart" />
           Kaydedilenler
         </Menu.Item>

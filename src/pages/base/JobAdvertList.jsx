@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, Card, CardGroup, Image, Icon } from "semantic-ui-react";
+import FavoriteService from "../../services/favoriteService";
 import JobAdvertService from "../../services/jobAdvertService";
+import { useToasts } from "react-toast-notifications";
 
 export default function JobAdvertList() {
+  const { addToast } = useToasts();
+
   const [jobAdverts, setJobAdverts] = useState([]);
 
   useEffect(() => {
@@ -12,6 +16,20 @@ export default function JobAdvertList() {
       .getActiveJobAdverts()
       .then((result) => setJobAdverts(result.data.data));
   }, []);
+
+  let addToSave = (jobAdvertId) => {
+    let favoriteService = new FavoriteService();
+    const values ={
+      userId:40,
+      jobAdvertId:jobAdvertId
+    }
+    favoriteService.add(values).then((result) => {
+      addToast(result.data.message, {
+        appearance: result.data.success ? "success" : "error",
+        autoDismiss: true,
+      });
+    });
+  };
 
   return (
     <div>
@@ -70,34 +88,23 @@ export default function JobAdvertList() {
                   Son başvuru : {jobAdvert?.dueDate}
                 </Card.Meta>
               </Link>
-              {/* <Image
-                floated="left"
-                size="mini"
-                src={jobAdvert.employer.image?.imageUrl}
-              />
-              <Link to={`/jobs/${jobAdvert.jobAdvertId}`}>
-              <Card.Header textAlign="center">{jobAdvert.position.positionName}</Card.Header>
-              <Card.Meta textAlign="right"><Icon name='map marker alternate'/>{jobAdvert.city.cityName}</Card.Meta>
-              <Card.Content textAlign="left">{jobAdvert.employer.companyName}</Card.Content>
-              <Card.Meta textAlign="left">Açık Sayısı : {jobAdvert.quantity}</Card.Meta>
-              <Card.Meta textAlign="right"><Icon name='bell'/>{jobAdvert.advertDate}</Card.Meta>
-              <Card.Meta textAlign="right">Son Başvuru Tarihi</Card.Meta>
-              <Card.Meta textAlign="right"><Icon name='bell slash'/>{jobAdvert.dueDate}</Card.Meta>
-              <Card.Meta textAlign="left"><Icon name='briefcase'/>{jobAdvert.jobTypePlace.placeTypeName}</Card.Meta>
-              <Card.Meta textAlign="left"><Icon name='time'/>{jobAdvert.jobTypeTime.timeTypeName}</Card.Meta>
-              </Link> */}
             </Card.Content>
             <Card.Content extra>
               <div className="ui three buttons">
                 <Button basic color="green">
                   Başvur
+                  <Icon corner="top right" name="send"/>
                 </Button>
-                <Button basic color="red">
+                <Button 
+                onClick={() => addToSave(jobAdvert.jobAdvertId)}
+                basic color="red">
                   Kaydet
+                  <Icon corner="top right" name="heart"/>
                 </Button>
                 <Link to={`/jobs/${jobAdvert.jobAdvertId}`}>
                   <Button basic color="blue">
                     İlan Detayı
+                    <Icon corner="top right" name="eye"/>
                   </Button>
                 </Link>
               </div>
