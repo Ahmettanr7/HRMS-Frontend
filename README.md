@@ -1,4 +1,4 @@
- # UML DİAGRAM
+ # UML DİAGRAM (will be updated)
  
  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623249346/newUmlDiagram_gh0qql.png)
  
@@ -9,12 +9,14 @@
  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623249344/welcome3_xcysef.png)
  
  # Job Advert Page
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623535063/overviewHome_r6mlc7.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500152/jobSeekerPage_cuhkkf.png)
  
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623535063/overviewHome2_q4nkpy.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500365/jobSeekerPAge2_xxu8et.png)
  
   # Job Advert Detail Page
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623535063/jobAdvertDetail_blbtsl.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500152/advertDetailPage1_p1lgsk.png)
+ 
+  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500154/advertDetailPage2_cwoio8.png)
  
  
  # Register Pages
