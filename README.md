@@ -21,23 +21,34 @@
  
  # Register Pages
   
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623535061/signUp_nxf5tv.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500557/employeeRegister_lj2wkl.png)
  
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623535061/signUpEmployer_oz79yp.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500558/employerRegister_aq3zwb.png)
  
  # Login Page
  
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623535062/SignIn_ewfgzz.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500556/login_mkjrsh.png)
  
- # Job Advert Add Page
+ # Job Advert Add
  
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623535061/jobAdvertAdd2_gdm3cm.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500152/jobAdvertAdd_wdb7jj.png)
  
-  # Job Advert Management For Employer Page
+  # Management Panel For Employer Page
  
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623619298/employerJobAdList_ekbdea.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500152/employerManagement_bkfj1j.png)
  
-  # Job Advert Management For Admin Page
+  # Management Panel For Admin Page
  
- ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1623619297/adminJobAdList_xb6oo5.png)
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500152/adminJobAdvertManagement_vvgnbo.png)
  
+  # job Sekeer Profil And Cv Preview
+ 
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500153/jobSekeerProfilAndCvPreview_yeerem.png)
+ 
+   # Saved Job Adverts
+ 
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500153/savedJobAdverts_wilyjl.png)
+ 
+  # Cv Add And Update
+ 
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500152/CvAddAndUpdate_ttmr5b.png)
