@@ -13,6 +13,9 @@
  
  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500365/jobSeekerPAge2_xxu8et.png)
  
+  # Job Advert Filter
+  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624550133/filterAdvert_voevsi.png)
+ 
   # Job Advert Detail Page
  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500152/advertDetailPage1_p1lgsk.png)
  
