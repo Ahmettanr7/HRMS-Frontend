@@ -23,7 +23,7 @@ export default function JobAdvertDetail() {
   let addToSave = (jobAdvertId) => {
     let favoriteService = new FavoriteService();
     const values ={
-      userId:40,
+      userId:56,
       jobAdvertId:jobAdvertId
     }
     favoriteService.add(values).then((result) => {
@@ -44,12 +44,12 @@ export default function JobAdvertDetail() {
                 İLAN DETAYI
               </Label>
               <Segment >
-                {jobAdvert?.employer?.image ? (
+                {jobAdvert?.employer?.imageUrl ? (
                   <Image
                     bordered
                     floated="right"
                     size="tiny"
-                    src={jobAdvert?.employer?.image?.imageUrl}
+                    src={jobAdvert?.employer?.imageUrl}
                   />
                 ) : (
                   <Image

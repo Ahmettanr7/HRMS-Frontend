@@ -7,7 +7,7 @@ import { Route } from "react-router-dom";
 export default function SingleInfosPreview() {
 
   const { addToast } = useToasts();
-  const userId = 40;
+  const userId = 56;
 
   const [singleInfo, setSingleInfo] = useState({});
 

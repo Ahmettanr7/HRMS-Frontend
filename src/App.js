@@ -10,6 +10,7 @@ function App() {
   return (
     <div className="App">
       <Dashboard />
+      <Route exact path='/jobs/:cityId/:positionId/:placeTypeId:/:timeTypeId' component={Dashboard}/>
       <Route exact path="/admin" component={AdminDashboard} />
       <Route exact path="/admin/jobadvertlist" component={AdminDashboard} />
       <Route exact path="/admin/employeelist" component={AdminDashboard} />

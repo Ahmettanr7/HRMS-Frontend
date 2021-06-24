@@ -23,7 +23,7 @@ export default function SingleInfosAdd() {
       coverLetter: "",
     },
     onSubmit: (values) => {
-      values.userId = 40;
+      values.userId = 56;
       cvService.addSingleInfo(values).then((result) =>
         addToast(result.data.message, {
           appearance: result.data.success ? "success" : "error",

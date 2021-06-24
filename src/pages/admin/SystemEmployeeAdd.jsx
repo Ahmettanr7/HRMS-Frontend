@@ -38,6 +38,7 @@ export default function SystemEmployeeAdd({ triggerButtonn }) {
           autoDismiss: true,
         })
       );
+      setOpen(false)
     },
   });
 

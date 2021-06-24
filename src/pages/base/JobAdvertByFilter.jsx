@@ -1,39 +1,45 @@
+import JobAdvertService from '../../services/jobAdvertService';
+import { Button, Card, CardGroup, Image, Icon } from "semantic-ui-react";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, CardGroup, Image, Icon, Pagination } from "semantic-ui-react";
 import FavoriteService from "../../services/favoriteService";
-import JobAdvertService from "../../services/jobAdvertService";
 import { useToasts } from "react-toast-notifications";
+import { useParams } from 'react-router';
 
-export default function JobAdvertList() {
-  const { addToast } = useToasts();
+export default function JobAdvertByFilter() {
 
-  const [jobAdverts, setJobAdverts] = useState([]);
+    const { addToast } = useToasts();
 
-  useEffect(() => {
-    let jobAdvertService = new JobAdvertService();
-    jobAdvertService
-      .getActiveJobAdverts()
-      .then((result) => setJobAdverts(result.data.data));
-  }, []);
+    let { cityId } = useParams();
+    let { positionId } = useParams();
+    let { placeTypeId } = useParams();
+    let { timeTypeId } = useParams();
 
-  let addToSave = (jobAdvertId) => {
-    let favoriteService = new FavoriteService();
-    const values ={
-      userId:56,
-      jobAdvertId:jobAdvertId
-    }
-    favoriteService.add(values).then((result) => {
-      addToast(result.data.message, {
-        appearance: result.data.success ? "success" : "error",
-        autoDismiss: true,
-      });
-    });
-  };
+    const [jobAdverts, setJobAdverts] = useState([]);
 
-  return (
-    <div>
-      <CardGroup centered>
+    useEffect(() => {
+        let jobAdvertService = new JobAdvertService();
+        jobAdvertService.getByFilter(cityId,positionId,placeTypeId,timeTypeId)
+          .then((result) => setJobAdverts(result.data.data));
+      }, []);
+
+      let addToSave = (jobAdvertId) => {
+        let favoriteService = new FavoriteService();
+        const values ={
+          userId:56,
+          jobAdvertId:jobAdvertId
+        }
+        favoriteService.add(values).then((result) => {
+          addToast(result.data.message, {
+            appearance: result.data.success ? "success" : "error",
+            autoDismiss: true,
+          });
+        });
+      };
+
+    return (
+        <div>
+            <CardGroup centered>
         {jobAdverts.map((jobAdvert) => (
           <Card fluid floated="right" link key={jobAdvert.jobAdvertId}>
             <Card.Content>
@@ -112,6 +118,6 @@ export default function JobAdvertList() {
           </Card>
         ))}
       </CardGroup>
-    </div>
-  );
+        </div>
+    )
 }

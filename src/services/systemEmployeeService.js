@@ -5,6 +5,10 @@ export default class SystemEmployeeSerivce{
         return axios.post("http://localhost:8080/api/systememployees/add",systemEmployee)
     }
 
+    update(systemEmployee){
+        return axios.post("http://localhost:8080/api/systememployees/update",systemEmployee)
+    }
+
     getSystemEmployees(){
         return axios.get("http://localhost:8080/api/systememployees/getall")
     }
@@ -13,7 +17,7 @@ export default class SystemEmployeeSerivce{
         return axios.get("http://localhost:8080/api/systememployees/getByEmail")
     }
 
-    getSystemEmployeesByUserId(){
-        return axios.get("http://localhost:8080/api/systememployees/getByUserId")
+    getByUserId(userId){
+        return axios.get("http://localhost:8080/api/systememployees/getByUserId?userId="+userId)
     }
 }

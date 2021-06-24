@@ -12,7 +12,7 @@ export default function SavedAdverts() {
   useEffect(() => {
     let favoriteService = new FavoriteService();
     favoriteService
-      .getAllByUserId(40)
+      .getAllByUserId(56)
       .then((result) => setFavorites(result.data.data));
   }, []);
 
@@ -33,12 +33,12 @@ export default function SavedAdverts() {
           <Card key={favorite.id} centered>
             <Link to={`/jobs/${favorite.jobAdvert.jobAdvertId}`}>
               <Card.Content>
-                {favorite.jobAdvert.employer.image ? (
+                {favorite.jobAdvert.employer.imageUrl ? (
                   <Image
                     bordered
                     floated="right"
                     size="tiny"
-                    src={favorite.jobAdvert.employer.image.imageUrl}
+                    src={favorite.jobAdvert.employer.imageUrl}
                   />
                 ) : (
                   <Image

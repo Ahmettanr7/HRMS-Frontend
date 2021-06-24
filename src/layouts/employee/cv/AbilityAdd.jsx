@@ -15,7 +15,7 @@ export default function AbilityAdd() {
       abilityName: ""
     },
     onSubmit: (values) => {
-      values.userId = 40;
+      values.userId = 56;
       cvService.addAbility(values).then((result) =>
         addToast(result.data.message, {
           appearance: result.data.success ? "success" : "error",

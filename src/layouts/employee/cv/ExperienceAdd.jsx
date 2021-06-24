@@ -25,7 +25,7 @@ export default function ExperienceAdd() {
       reasonForLeaving: "",
     },
     onSubmit: (values) => {
-      values.userId = 40;
+      values.userId = 56;
       cvService.addExperience(values).then((result) =>
         addToast(result.data.message, {
           appearance: result.data.success ? "success" : "error",

@@ -6,6 +6,7 @@ import EmployeeList from "../../pages/admin/EmployeeList";
 import AdminMenu from "./AdminMenu";
 import EmployerList from "../../pages/admin/EmployerList";
 import SystemEmployeeList from "../../pages/admin/SystemEmployeeList";
+import Home from "../../pages/admin/Home";
 
 export default function AdminDashboard() {
   return (
@@ -20,6 +21,7 @@ export default function AdminDashboard() {
         </Grid.Column>
         <Grid.Column style={{marginLeft:'2em'}} stretched width={12}>
           <Segment>
+            <Route exact path="/admin" component={Home}/>
             <Route exact path="/admin/jobadvertlist" component={JobAdvertListAdmin} />
             <Route exact path="/admin/employeelist/" component={EmployeeList} />
             <Route exact path="/admin/employerlist/" component={EmployerList} />

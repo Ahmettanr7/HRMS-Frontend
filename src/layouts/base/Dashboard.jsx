@@ -10,12 +10,14 @@ import Welcome from '../../pages/base/Welcome';
 import SignUpEmployer from '../../pages/base/SignUpEmployer';
 import JobAdvertList from '../../pages/base/JobAdvertList';
 import FilterTop from './FilterTop';
+import JobAdvertByFilter from '../../pages/base/JobAdvertByFilter';
 
 export default function Dashboard() {
     return (
         <div>
             <Navi></Navi>
             <Route exact path='/jobs' component={FilterTop}/>
+            <Route exact path='/jobs/:cityId/:positionId/:placeTypeId/:timeTypeId' component={FilterTop}/>
             <Route exact path='/' component={Welcome}/>
             <Route exact path='/login' component={SignIn}/>
             <Route exact path='/signup' component={SignUp}/>
@@ -27,11 +29,13 @@ export default function Dashboard() {
                     <Grid.Column width={5} floated='left' >
                     <Route exact path='/jobs' component={Filter}/>
                     <Route exact path='/jobs/:jobAdvertId' component={Filter}/>
+                    <Route exact path='/jobs/:cityId/:positionId/:placeTypeId/:timeTypeId' component={Filter}/>
                     </Grid.Column>
                     <Grid.Column width={2}></Grid.Column>
                     <GridColumn width={9} floated='right' >
                     <Route exact path='/jobs' component={JobAdvertList}/>
                     <Route exact path='/jobs/:jobAdvertId' component={JobAdvertDetail}/>
+                    <Route exact path='/jobs/:cityId/:positionId/:placeTypeId/:timeTypeId' component={JobAdvertByFilter}/>
                     </GridColumn>
                     {/* <Grid.Column width={4} >
                     <Route exact path='/jobs' component={SearchFilter}/>

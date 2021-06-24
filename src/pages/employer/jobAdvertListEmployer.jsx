@@ -11,7 +11,7 @@ export default function JobAdvertListEmployer() {
   useEffect(() => {
     let jobAdvertService = new JobAdvertService();
     jobAdvertService
-      .getAllByUserId(34)
+      .getAllByUserId(60)
       .then((result) => setJobAdverts(result.data.data));
   }, []);
 

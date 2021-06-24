@@ -23,7 +23,7 @@ export default function LanguageAdd() {
       level_: "",
     },
     onSubmit: (values) => {
-      values.userId = 40;
+      values.userId = 56;
       cvService.addLanguage(values).then((result) =>
         addToast(result.data.message, {
           appearance: result.data.success ? "success" : "error",

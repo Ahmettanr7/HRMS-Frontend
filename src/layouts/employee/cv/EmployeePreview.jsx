@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import EmployeeService from "../../../services/employeeService";
 
 export default function EmployeePreview() {
-  const userId = 40;
+  const userId = 56;
 
   const [employee, setEmployee] = useState({});
 
@@ -20,7 +20,7 @@ export default function EmployeePreview() {
       <Segment>
         <Item.Group>
             <Item>
-              <Item.Image size="tiny"  src={employee.image?.imageUrl} />
+              <Item.Image size="tiny"  src={employee.imageUrl} />
               <Item.Content >
                 <Item.Header>
                   {employee.firstName} {employee.lastName}

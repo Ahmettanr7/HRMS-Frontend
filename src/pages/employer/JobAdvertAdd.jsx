@@ -48,7 +48,7 @@ export default function JobAdvertAdd({ triggerButton }) {
     },
     validationSchema: JobAdvertAddSchema,
     onSubmit: (values) => {
-      values.userId = 34;
+      values.userId = 60;
       jobAdvertService.add(values).then((result) =>
         addToast(result.data.message, {
           appearance: result.data.success ? "success" : "error",
