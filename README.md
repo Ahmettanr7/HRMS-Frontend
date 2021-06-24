@@ -44,6 +44,10 @@
  
  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500152/adminJobAdvertManagement_vvgnbo.png)
  
+  # System Employee Individual Information Update
+ 
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624550221/adminInfoUpdate_v6i7z2.png)
+ 
   # job Sekeer Profil And Cv Preview
  
  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500153/jobSekeerProfilAndCvPreview_yeerem.png)
