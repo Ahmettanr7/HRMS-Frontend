@@ -33,10 +33,13 @@ export default function AdminMenu() {
           <Icon name="list" />
           SISTEM CALISANLARI
         </Menu.Item>
-
+        <Menu.Item link as={NavLink} to="/admin/employerupdates">
+          <Icon name="list" />
+         Onay Bekleyen İşveren Güncellemeleri
+        </Menu.Item>
         <Dropdown item text="More">
           <Dropdown.Menu>
-            <Dropdown.Item icon="edit" text="Edit Profile" />
+            <Dropdown.Item icon="edit" text="Edit Profile" as={NavLink} to="/admin" />
             <Dropdown.Item icon="globe" text="Choose Language" />
             <Dropdown.Item icon="settings" text="Account Settings" />
           </Dropdown.Menu>

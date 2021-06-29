@@ -15,6 +15,7 @@ function App() {
       <Route exact path="/admin/jobadvertlist" component={AdminDashboard} />
       <Route exact path="/admin/employeelist" component={AdminDashboard} />
       <Route exact path="/admin/employerlist" component={AdminDashboard} />
+      <Route exact path="/admin/employerupdates" component={AdminDashboard} />
       <Route
         exact
         path="/admin/systememployeelist"
@@ -26,6 +27,7 @@ function App() {
         path="/employer/jobadvertlist"
         component={EmployerDashboard}
       />
+      <Route exact path="/employer/updatehistory" component={EmployerDashboard} />
       <Route exact path="/employee" component={EmployeeDashboard} />
       <Route exact path="/employee/saved" component={EmployeeDashboard} />
       <Route exact path="/employee/cv" component={EmployeeDashboard} />

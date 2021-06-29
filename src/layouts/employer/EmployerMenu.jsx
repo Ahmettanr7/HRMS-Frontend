@@ -19,6 +19,10 @@ export default function EmployerMenu() {
           <Icon name="list" />
           ILANLARIM
         </Menu.Item>
+        <Menu.Item link as={NavLink} to="/employer/updatehistory">
+          <Icon name="time" />
+          Güncelleme Geçmişi
+        </Menu.Item>
         <Dropdown item text="More">
           <Dropdown.Menu>
             <Dropdown.Item icon="edit" text="Profili Düzenle" />

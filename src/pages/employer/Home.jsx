@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Card, Icon, Image, Button, Input } from "semantic-ui-react";
 import EmployerService from "../../services/employerService";
+import Update from "./update";
 
 export default function Home() {
   const userId = 59;
@@ -16,9 +17,14 @@ export default function Home() {
 
   return (
     <div>
-      <Button floated="right" icon>
-        PROFİLİ DÜZENLE <Icon name="edit"></Icon>
-      </Button>
+      <Update
+        triggerButton={
+          <Button floated="right" primary icon labelPosition="left">
+            <Icon name="edit" />
+            Düzenle
+          </Button>
+        }
+      />
       <Card centered style={{ width: "30%" }}>
         {employer?.imageUrl ? (
           <Image bordered centered size="small" src={employer?.imageUrl} />
