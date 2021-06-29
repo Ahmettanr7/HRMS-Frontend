@@ -59,3 +59,8 @@
   # Cv Add And Update
  
  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624500152/CvAddAndUpdate_ttmr5b.png)
+ 
+   # Employer Update
+ 
+ ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624962169/employerUpdate1_uhqtea.png)
+  ![alt text](https://res.cloudinary.com/ahmettanrikulu/image/upload/v1624962167/employerUpdate2_bu54af.png)
