@@ -26,7 +26,7 @@ export default class JobAdvertService{
     }
 
     getActiveJobAdverts(){
-        return axios.get("http://localhost:8080/api/jobadverts/getActiviteAdvertsByAdvertDateDesc")
+        return axios.get("http://localhost:8080/api/jobadverts/getActiviteAdvertsByAdvertDateDescc")
     }
 
     getAllByCityId(){
@@ -52,7 +52,10 @@ export default class JobAdvertService{
     getByFilter(cityId,positionId,placeTypeId,timeTypeId){
         return axios.get(`http://localhost:8080/api/jobadverts/getAllByPlaceAndTimeAndActive?cityId=${cityId}&placeTypeId=${placeTypeId}&positionId=${positionId}&timeTypeId=${timeTypeId}`)
     }
-    
+
+    getPageable(pageNo,pageSize) {
+        return axios.get("http://localhost:8080/api/jobadverts/getActiviteAdvertsByAdvertDateDesc?pageNo="+pageNo+"&pageSize="+pageSize)
+    }
 
 
 

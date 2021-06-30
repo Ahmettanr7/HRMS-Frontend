@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Button, Card, CardGroup, Image, Icon, Pagination } from "semantic-ui-react";
+import {
+  Button,
+  Card,
+  CardGroup,
+  Image,
+  Icon,
+  Pagination,
+} from "semantic-ui-react";
 import FavoriteService from "../../services/favoriteService";
 import JobAdvertService from "../../services/jobAdvertService";
 import { useToasts } from "react-toast-notifications";
@@ -9,20 +16,28 @@ export default function JobAdvertList() {
   const { addToast } = useToasts();
 
   const [jobAdverts, setJobAdverts] = useState([]);
+  const [totaljobAdverts, setTotalJobAdverts] = useState([]);
 
   useEffect(() => {
     let jobAdvertService = new JobAdvertService();
     jobAdvertService
       .getActiveJobAdverts()
-      .then((result) => setJobAdverts(result.data.data));
+      .then((result) => setTotalJobAdverts(result.data.data));
   }, []);
+
+  useEffect(() => {
+    let jobAdvertService = new JobAdvertService();
+    jobAdvertService
+      .getPageable(pageNo, pageSize)
+      .then((result) => setJobAdverts(result.data.data));
+  }, [jobAdverts]);
 
   let addToSave = (jobAdvertId) => {
     let favoriteService = new FavoriteService();
-    const values ={
-      userId:56,
-      jobAdvertId:jobAdvertId
-    }
+    const values = {
+      userId: 56,
+      jobAdvertId: jobAdvertId,
+    };
     favoriteService.add(values).then((result) => {
       addToast(result.data.message, {
         appearance: result.data.success ? "success" : "error",
@@ -30,6 +45,13 @@ export default function JobAdvertList() {
       });
     });
   };
+
+  const [pageNo, setActivePage] = useState(1);
+  const handlePaginationChange = (e, { activePage }) =>
+    setActivePage(activePage);
+
+  const [pageSize, setPageSize] = useState(5);
+  const totalPages = Math.ceil(totaljobAdverts.length / pageSize);
 
   return (
     <div>
@@ -74,13 +96,17 @@ export default function JobAdvertList() {
                   <Icon name="time" />
                   {jobAdvert?.jobTypeTime?.timeTypeName}
                 </Card.Meta>
-                <Card.Meta textAlign="left"><b>Maaş Aralığı</b></Card.Meta>
-                {jobAdvert.maxSalary ?
-                 (<Card.Meta textAlign="left">
-                  <Icon name="try" /> {jobAdvert?.minSalary} -
-                  {jobAdvert?.maxSalary} 
-                </Card.Meta>)
-                : (<Card.Meta textAlign="left">Belirtilmemiş</Card.Meta>)}
+                <Card.Meta textAlign="left">
+                  <b>Maaş Aralığı</b>
+                </Card.Meta>
+                {jobAdvert.maxSalary ? (
+                  <Card.Meta textAlign="left">
+                    <Icon name="try" /> {jobAdvert?.minSalary} -
+                    {jobAdvert?.maxSalary}
+                  </Card.Meta>
+                ) : (
+                  <Card.Meta textAlign="left">Belirtilmemiş</Card.Meta>
+                )}
                 <Card.Meta className="mt1bem" textAlign="right">
                   Yayınlanma : {jobAdvert?.advertDate}
                 </Card.Meta>
@@ -93,18 +119,20 @@ export default function JobAdvertList() {
               <div className="ui three buttons">
                 <Button basic color="green">
                   Başvur
-                  <Icon corner="top right" name="send"/>
+                  <Icon corner="top right" name="send" />
                 </Button>
-                <Button 
-                onClick={() => addToSave(jobAdvert.jobAdvertId)}
-                basic color="red">
+                <Button
+                  onClick={() => addToSave(jobAdvert.jobAdvertId)}
+                  basic
+                  color="red"
+                >
                   Kaydet
-                  <Icon corner="top right" name="heart"/>
+                  <Icon corner="top right" name="heart" />
                 </Button>
                 <Link to={`/jobs/${jobAdvert.jobAdvertId}`}>
                   <Button basic color="blue">
                     İlan Detayı
-                    <Icon corner="top right" name="eye"/>
+                    <Icon corner="top right" name="eye" />
                   </Button>
                 </Link>
               </div>
@@ -112,6 +140,15 @@ export default function JobAdvertList() {
           </Card>
         ))}
       </CardGroup>
+      <Pagination
+        className="mt1bem"
+        activePage={pageNo}
+        onPageChange={handlePaginationChange}
+        totalPages={totalPages}
+        ellipsisItem={null}
+        pointing
+        secondary
+      />
     </div>
   );
 }
